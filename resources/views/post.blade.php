@@ -2,32 +2,43 @@
     <html>
 
     <head>
-        <title>View Posts</title>
+        <title>Posts</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        @vite(['resources/scss/app.scss', 'resources/js/app.js'])
     </head>
 
     <body>
-        <h2> Fetching Posts From Database</h2>
-        <table border="1">
-            <tr>
-                <td>Post Title </td>
-                <td>Post Description</td>
-                <td>Posted Use</td>
-                <td>Poseted Date</td>
-                <td></td>
-                <td></td>
-
-            </tr>
-            @foreach ($posts as $post)
-                <tr>
-                    <td>{{ $post->title }}</td>
-                    <td>{{ $post->description }}</td>
-                    <td>{{ $post->status }}</td>
-                    <td></td>
-                    <td>Edit</td>
-                    <td>Delete</td>
-                </tr>
-            @endforeach
-        </table>
+        
+          <div class="container">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <table class="table-latitude">
+                         <caption>Posts</caption>
+                          <thead>
+                            <th>Post Title </th>
+                            <th>Post Description</th>
+                            <th>Posted Use</th>
+                            <th>Poseted Date</th>
+                            <th></th>
+                            <th></th>
+                        </thead>
+                        <tbody>
+                            @foreach ($posts as $post)
+                            <tr>
+                                <td>{{ $post->title }}</td>
+                                <td>{{ $post->description }}</td>
+                                <td>{{ $post->status }}</td>
+                                <td>{{ $post->created_at }}</td>
+                                <td>Edit</td>
+                                <td>Delete</td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </body>
 
     </html>
