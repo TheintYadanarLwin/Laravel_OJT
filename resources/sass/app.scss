@@ -6,16 +6,23 @@ body{
     width:100%;
     background-color: $bg-color;
 }
+a {
+    text-decoration: none;
+}
 .container {
     background-color: $bg-color;
     h2 {
-        font-size : 20px;
+        margin-top: 20px;
+        font-size : 25px;
         font-style: italic;
+        text-transform: uppercase;
+        color: $lfs-yellow;
     }
 }
-
+.nav {
+    margin: 0 auto;
+}
 .table-latitude {
-    width: 80%;
     margin: 0 auto;
     caption {
         text-transform: uppercase;

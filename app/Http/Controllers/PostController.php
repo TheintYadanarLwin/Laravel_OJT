@@ -2,8 +2,9 @@
 namespace App\Http\Controllers\Api;
 namespace App\Http\Controllers;
 use App\Models\Post;
-use Illuminate\Http\Request;
+use App\Http\Requests\PostDataStoreRequest;
 use App\Contracts\Services\Post\PostServiceInterface;
+use App\Http\Requests\UpdatePostRequest;
 
 class PostController extends Controller
 {
@@ -14,27 +15,39 @@ class PostController extends Controller
        $this->postService = $postService;
     }
 
-    //get all posts from database
+    /**
+    * Display a listing of the resource.
+    *
+    * @return \Illuminate\Http\Response
+    */
     public function index()
     {
-        $posts = $this->postService->getPosts();
+        $posts = $this->postService->index();
         return view('posts.index', compact('posts'));
     }
 
+     /**
+    * Show the form for creating a new resource.
+    *
+    * @return \Illuminate\Http\Response
+    */
     public function create()
     {
         return view('posts.create');
     }
     
-    //Store posts into database
-    public function store(Request $request)
+    /**
+    * Store a newly created resource in storage.
+    *
+    * @param  \App\Http\Requests\PostDataStoreRequest $request
+    * @return \Illuminate\Http\Response
+    */
+    public function store(PostDataStoreRequest $request)
     {
-        $posts = $this->postService->createPosts($request);
+        $posts = $this->postService->create($request);
         return redirect()->route('posts.index',compact('posts'))->with('success','Post has been created successfully.');
     }
 
-    //update posts
-    
     /**
     * Display the specified resource.
     *
@@ -57,14 +70,19 @@ class PostController extends Controller
         return view('posts.edit',compact('post'));
     }
 
-    
-    public function update(Request $request,Post $post)
+    /**
+    * Update the specified resource in storage.
+    *
+    * @param  \App\Http\Requests\PostDataStoreRequest $request
+    * @param  \App\Models\Post  $post
+    * @return \Illuminate\Http\Response
+    */
+    public function update(UpdatePostRequest $request,Post $post)
     {
-        $posts = $this->postService->updatePosts($request,$post);
+        $posts = $this->postService->update($request,$post);
         return redirect()->route('posts.index', compact('posts'))->with('success','Post Has Been updated successfully');
     }
 
-    //delete post
      /**
     * Remove the specified resource from storage.
     *
@@ -73,7 +91,7 @@ class PostController extends Controller
     */
     public function destroy(Post $post)
     {
-        $posts = $this->postService->deletePost($post);
+        $posts = $this->postService->destroy($post);
         return redirect()->route('posts.index',compact('posts'))->with('success','Post has been deleted successfully');
     }
 

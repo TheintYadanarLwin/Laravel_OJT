@@ -16,23 +16,46 @@ class PostService implements PostServiceInterface
         $this->postDao = $postDao;
     }
 
-    public function getPosts()
+    /**
+    * Display a listing of the resource.
+    *
+    * @return \Illuminate\Http\Response
+    */
+    public function index()
     {
-        return $this->postDao->getPosts();
+        return $this->postDao->index();
     }
 
-    public function createPosts(Request $request)
+    /**
+    * Show the form for creating a new resource.
+    *
+    * @return \Illuminate\Http\Response
+    */
+    public function create(Request $request)
     {
-        return $this->postDao->createPosts($request);
+        return $this->postDao->create($request);
     }
 
-    public function updatePosts(Request $request,Post $post)
+    /**
+    * Update the specified resource in storage.
+    *
+    *  @param  \App\Http\Requests\UpdatePostRequest $request
+    * @param  \App\Models\Post  $post
+    * @return \Illuminate\Http\Response
+    */
+    public function update(Request $request,Post $post)
     {
-        return $this->postDao->updatePosts($request,$post);
+        return $this->postDao->update($request,$post);
     }
 
-    public function deletePost(Post $post)
+    /**
+    * Remove the specified resource from storage.
+    *
+    * @param  \App\Models\Post $post
+    * @return \Illuminate\Http\Response
+    */
+    public function destroy(Post $post)
     {
-        return $this->postDao->deletePost($post);
+        return $this->postDao->destroy($post);
     }
 }

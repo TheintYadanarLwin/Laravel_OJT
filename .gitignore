@@ -13,6 +13,6 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
-/storage/logs/laravel.log
+/storage/*
 composer.lock
 package-lock.json
