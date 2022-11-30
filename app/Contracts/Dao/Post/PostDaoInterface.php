@@ -27,5 +27,10 @@ interface PostDaoInterface
 
     public function updatePosts(Request $request,Post $post);
 
+    /**
+    * Delete Post.
+    * @param object $request
+    * @return object
+    */
     public function deletePost(Post $post);
 }

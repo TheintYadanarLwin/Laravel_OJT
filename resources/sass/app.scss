@@ -1,8 +1,13 @@
-@import "colors";
+@import "variables";
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=PT+Sans+Caption&display=swap');
+
+body{
+    width:100%;
+    background-color: $bg-color;
+}
 .container {
-    background-color: rgb(10, 10, 10);
+    background-color: $bg-color;
     h2 {
         font-size : 20px;
         font-style: italic;
@@ -29,22 +34,22 @@
             text-align: center;
             padding: 10px;
             color: $lfs-blue;
-            border: 1px solid #F1F1F1;
+            border: 1px solid $border-brown;
             font-family: 'PT Sans Caption', sans-serif;
         }
     }
     tbody {
         tr {
-            border-bottom: 1px solid #F1F1F1;
-            color: $lfs-white;
+            border-bottom: 1px solid  $border-brown;
+            color: $lfs-black;
             font-family: 'Poppins', sans-serif;
             td {
                 padding: 10px;
-                border: 1px solid #F1F1F1;
+                border: 1px solid  $border-brown;
             }
             th {
                 padding-left: 10px;
-                border: 1px solid #F1F1F1;
+                border: 1px solid  $border-brown;
             }
         }
     }

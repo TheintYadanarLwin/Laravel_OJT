@@ -35,5 +35,4 @@ class PostService implements PostServiceInterface
     {
         return $this->postDao->deletePost($post);
     }
-    
 }

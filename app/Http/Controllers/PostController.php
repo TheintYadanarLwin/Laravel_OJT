@@ -30,7 +30,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $posts = $this->postService->createPosts($request);
-        return redirect()->route('posts.index')->with('success','Post has been created successfully.');
+        return redirect()->route('posts.index',compact('posts'))->with('success','Post has been created successfully.');
     }
 
     //update posts
@@ -57,17 +57,11 @@ class PostController extends Controller
         return view('posts.edit',compact('post'));
     }
 
-    /**
-    * Update the specified resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @param  \App\Models\Post  $post
-    * @return \Illuminate\Http\Response
-    */
+    
     public function update(Request $request,Post $post)
     {
         $posts = $this->postService->updatePosts($request,$post);
-        return redirect()->route('posts.index')->with('success','Post Has Been updated successfully');
+        return redirect()->route('posts.index', compact('posts'))->with('success','Post Has Been updated successfully');
     }
 
     //delete post
@@ -80,6 +74,7 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $posts = $this->postService->deletePost($post);
-        return redirect()->route('posts.index')->with('success','Post has been deleted successfully');
+        return redirect()->route('posts.index',compact('posts'))->with('success','Post has been deleted successfully');
     }
+
 }

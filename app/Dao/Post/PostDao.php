@@ -10,7 +10,8 @@ class PostDao implements PostDaoInterface
 {
     public function getPosts()
     {   
-        return Post::all();
+        return Post::latest()->paginate(5);
+        
     }
 
     //Store posts into database
@@ -33,7 +34,8 @@ class PostDao implements PostDaoInterface
             'status' => 'required',
         ]);
         
-        return $post->fill($request->post())->save();
+        // return $post->fill($request->post())->save();
+        return $post->update($request->all());
     }
 
     //delete Post
