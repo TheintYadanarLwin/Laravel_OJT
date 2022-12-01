@@ -14,14 +14,14 @@ interface PostDaoInterface
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\PostDataStoreRequest $request
+     * @param  \App\Http\Requests\PostRequest $request
      */
     public function store($request);
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdatePostRequest $request
+     * @param  \App\Http\Requests\PostRequest $request
      * @param  \App\Models\Post  $post
      */
     public function update($request, $post);

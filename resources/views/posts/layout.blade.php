@@ -2,13 +2,8 @@
 <html>
 
 <head>
-    <title>Laravel OJT </title>
-    <!-- Latest compiled and minified CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Latest compiled JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    @vite(['resources/scss/app.scss', 'resources/js/app.js'])
+    <title>@yield('title')</title>
+    @vite(['resources/js/app.js'])
 </head>
 
 <body>
@@ -25,7 +20,7 @@
                         <a class="nav-link active ml-3" aria-current="page" href="{{ route('posts.index') }}">POST</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link ml-3" href="#">CATEGORY</a>
+                        <a class="nav-link ml-3" href="{{ route('categories.index') }}">CATEGORY</a>
                     </li>
                 </ul>
             </div>

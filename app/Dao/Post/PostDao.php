@@ -9,6 +9,7 @@ class PostDao implements PostDaoInterface
 {
     /**
      * Display a listing of the resource.
+     * @return object
      */
     public function index()
     {
@@ -17,7 +18,7 @@ class PostDao implements PostDaoInterface
 
     /**
      * Show the form for creating a new resource.
-     * @param  \App\Http\Requests\PostDataStoreRequest $request
+     * @param  \App\Http\Requests\PostRequest $request
      */
     public function store($request)
     {
@@ -27,7 +28,7 @@ class PostDao implements PostDaoInterface
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdatePostRequest $request
+     * @param  \App\Http\Requests\PostRequest $request
      * @param  \App\Models\Post  $post
      */
 

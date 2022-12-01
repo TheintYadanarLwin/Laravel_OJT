@@ -1,5 +1,7 @@
 @extends('posts.layout')
-
+@section('title')
+POST DETAIL
+@endsection
 @section('content')
     <h2>Post Detail</h2>
     <div class="panel panel-default">

@@ -1,5 +1,7 @@
 @extends('posts.layout')
-
+@section('title')
+CREATE POST
+@endsection
 @section('content')
     <div class="row">
         <div class="col-lg-12 margin-tb">
