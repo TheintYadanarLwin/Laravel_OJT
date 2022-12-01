@@ -24,7 +24,7 @@ class UpdatePostRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|string|max:10',
+            'title' => 'required|string|max:40',
             'description' => 'required|string|max:50',
             'status' => 'required|string|max:50',
         ];
@@ -34,7 +34,10 @@ class UpdatePostRequest extends FormRequest
         return [
             'title.required' => 'Update Title is required!',
             'description.required' => 'Update Description is required!',
-            'status.required' => 'Update Status is required!'
+            'status.required' => 'Update Status is required!',
+            'title.max'=> 'Title can not be longer than 40 characters!',
+            'description.max'=> 'Description can not be longer than 50 characters!',
+            'status.max'=> 'Status can not be longer than 50 characters!',
         ];
     }
 }

@@ -76,7 +76,7 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\PostDataStoreRequest $request
+     * @param  \App\Http\Requests\UpdatePostRequest $request
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */

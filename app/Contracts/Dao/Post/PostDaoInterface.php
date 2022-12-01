@@ -8,8 +8,6 @@ interface PostDaoInterface
 {
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function index();
 
@@ -17,7 +15,6 @@ interface PostDaoInterface
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\PostDataStoreRequest $request
-     * @return \Illuminate\Http\Response
      */
     public function store($request);
 
@@ -26,7 +23,6 @@ interface PostDaoInterface
      *
      * @param  \App\Http\Requests\UpdatePostRequest $request
      * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
      */
     public function update($request, $post);
 
@@ -34,7 +30,6 @@ interface PostDaoInterface
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Post $post
-     * @return \Illuminate\Http\Response
      */
     public function destroy(Post $post);
 }
