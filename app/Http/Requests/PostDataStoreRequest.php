@@ -24,22 +24,18 @@ class PostDataStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required',
+            'title' => 'required|string|max:10',
             'description' => 'required|max:50',
-            'status' => 'required'
+            'status' => 'required|string|max:50'
         ];
     }
 
     public function messages()
     {
         return [
-
-            'title.required' =>'Title is required!',
-
-            'description.required' =>'Description is required!',
-
-            'status.required' =>'Status is required!'
-
+            'title.required' => 'Title is required!',
+            'description.required' => 'Description is required!',
+            'status.required' => 'Status is required!'
         ];
     }
 }

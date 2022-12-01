@@ -1,9 +1,9 @@
 @import "variables";
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=PT+Sans+Caption&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=PT+Sans+Caption&display=swap");
 
-body{
-    width:100%;
+body {
+    width: 100%;
     background-color: $bg-color;
 }
 a {
@@ -13,10 +13,10 @@ a {
     background-color: $bg-color;
     h2 {
         margin-top: 20px;
-        font-size : 25px;
+        font-size: 25px;
         font-style: italic;
         text-transform: uppercase;
-        color: $lfs-yellow;
+        color: $yellow;
     }
 }
 .nav {
@@ -27,36 +27,36 @@ a {
     caption {
         text-transform: uppercase;
         font-weight: bold;
-        color: $lfs-yellow;
+        color: $yellow;
         text-align: center;
         margin-top: 20px;
         font-size: larger;
-        font-family: 'PT Sans Caption', sans-serif;
+        font-family: "PT Sans Caption", sans-serif;
     }
     thead {
-        border-top: 2px solid $lfs-yellow;
-        border-bottom: 2px solid $lfs-yellow;
+        border-top: 2px solid $yellow;
+        border-bottom: 2px solid $yellow;
         th {
             text-transform: uppercase;
             text-align: center;
             padding: 10px;
-            color: $lfs-blue;
+            color: $blue;
             border: 1px solid $border-brown;
-            font-family: 'PT Sans Caption', sans-serif;
+            font-family: "PT Sans Caption", sans-serif;
         }
     }
     tbody {
         tr {
-            border-bottom: 1px solid  $border-brown;
-            color: $lfs-black;
-            font-family: 'Poppins', sans-serif;
+            border-bottom: 1px solid $border-brown;
+            color: $black;
+            font-family: "Poppins", sans-serif;
             td {
                 padding: 10px;
-                border: 1px solid  $border-brown;
+                border: 1px solid $border-brown;
             }
             th {
                 padding-left: 10px;
-                border: 1px solid  $border-brown;
+                border: 1px solid $border-brown;
             }
         }
     }

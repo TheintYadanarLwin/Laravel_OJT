@@ -24,21 +24,17 @@ class UpdatePostRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required',
-            'description' => 'required',
-            'status' => 'required',
+            'title' => 'required|string|max:10',
+            'description' => 'required|string|max:50',
+            'status' => 'required|string|max:50',
         ];
     }
     public function messages()
     {
         return [
-
-            'title.required' =>'Update Title is required!',
-
-            'description.required' =>'Update Description is required!',
-
-            'status.required' =>'Update Status is required!'
-
+            'title.required' => 'Update Title is required!',
+            'description.required' => 'Update Description is required!',
+            'status.required' => 'Update Status is required!'
         ];
     }
 }
