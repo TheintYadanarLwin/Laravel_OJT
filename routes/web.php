@@ -23,7 +23,6 @@ Route::get('/', function () {
 Route::resource('posts', PostController::class);
 
 //Route for Categories
-// Route::resource('categories', CategoryController::class);
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
 Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
 Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');

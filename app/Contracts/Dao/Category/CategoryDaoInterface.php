@@ -9,7 +9,6 @@ interface CategoryDaoInterface
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
      */
     public function index();
 
@@ -17,7 +16,6 @@ interface CategoryDaoInterface
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\CategoryRequest $request
-     * @return \Illuminate\Http\Response
      */
     public function store($request);
 
@@ -26,7 +24,6 @@ interface CategoryDaoInterface
      *
      * @param  \App\Http\Requests\CategoryRequest $request
      * @param  \App\Models\Category $category
-     * @return \Illuminate\Http\Response
      */
     public function update($request, $post);
 
@@ -34,7 +31,6 @@ interface CategoryDaoInterface
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Category $category
-     * @return \Illuminate\Http\Response
      */
     public function destroy(Category $post);
 }

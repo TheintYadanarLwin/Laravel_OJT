@@ -1,5 +1,7 @@
 @extends('posts.layout')
-
+@section('title')
+EDIT CATEGORY
+@endsection
 @section('content')
     <div class="row">
         <div class="col-lg-12 margin-tb">
@@ -31,6 +33,5 @@
                 <button type="submit" class="btn btn-primary mt-3">Submit</button>
             </div>
         </div>
-
     </form>
 @endsection
