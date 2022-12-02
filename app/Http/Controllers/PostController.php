@@ -5,9 +5,8 @@ namespace App\Http\Controllers\Api;
 namespace App\Http\Controllers;
 
 use App\Models\Post;
-use App\Http\Requests\PostDataStoreRequest;
 use App\Contracts\Services\Post\PostServiceInterface;
-use App\Http\Requests\UpdatePostRequest;
+use App\Http\Requests\PostRequest;
 
 class PostController extends Controller
 {
@@ -42,10 +41,10 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\PostDataStoreRequest $request
+     * @param  \App\Http\Requests\PostRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PostDataStoreRequest $request)
+    public function store(PostRequest $request)
     {
         $posts = $this->postService->store($request);
         return redirect()->route('posts.index', compact('posts'))->with('success', 'Post has been created successfully.');
@@ -76,11 +75,11 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\PostDataStoreRequest $request
+     * @param  \App\Http\Requests\PostRequest $request
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePostRequest $request, Post $post)
+    public function update(PostRequest $request, Post $post)
     {
         $posts = $this->postService->update($request, $post);
         return redirect()->route('posts.index', compact('posts'))->with('success', 'Post Has Been updated successfully');

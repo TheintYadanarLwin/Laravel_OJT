@@ -9,8 +9,7 @@ class PostDao implements PostDaoInterface
 {
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @return object
      */
     public function index()
     {
@@ -19,23 +18,18 @@ class PostDao implements PostDaoInterface
 
     /**
      * Show the form for creating a new resource.
-     * @param  \App\Http\Requests\PostDataStoreRequest $request
-     * @return \Illuminate\Http\Response
+     * @param  \App\Http\Requests\PostRequest $request
      */
     public function store($request)
     {
-
-        $post = Post::create($request->all());
-        info($post);
-        return back()->with('success', 'Post has been created successfully.');
+        return $post = Post::create($request->all());
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdatePostRequest $request
+     * @param  \App\Http\Requests\PostRequest $request
      * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
      */
 
     public function update($request, $post)
@@ -47,7 +41,6 @@ class PostDao implements PostDaoInterface
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Post $post
-     * @return \Illuminate\Http\Response
      */
     public function destroy(Post $post)
     {

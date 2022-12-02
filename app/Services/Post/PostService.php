@@ -19,7 +19,7 @@ class PostService implements PostServiceInterface
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return object
      */
     public function index()
     {
@@ -29,24 +29,18 @@ class PostService implements PostServiceInterface
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\PostDataStoreRequest $request
+     * @param  \App\Http\Requests\PostRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'status' => 'required'
-        ]);
-
         return $this->postDao->store($request);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdatePostRequest $request
+     * @param  \App\Http\Requests\PostRequest $request
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
