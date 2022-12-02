@@ -32,10 +32,6 @@ class CategoryService implements CategoryServiceInterface
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-        ]);
-
         return $this->categoryDao->store($request);
     }
 
