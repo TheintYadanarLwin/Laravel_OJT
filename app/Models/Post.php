@@ -16,4 +16,8 @@ class Post extends Model
         'updated_at',
         'deleted_at'
     ];
+
+    public function categories() {
+        return $this->belongsToMany(Category::class,'category_posts');
+    }
 }
