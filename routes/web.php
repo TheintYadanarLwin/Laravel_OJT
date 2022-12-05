@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CategoryController;
@@ -31,3 +32,7 @@ Route::put('/categories/{category}', [CategoryController::class, 'update'])->nam
 Route::get('/categories/{category}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
 Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 
+Route::get('/category_posts',function() {
+    // return Post::with('categories')->find(101);
+    return Post::with('categories')->get();
+});

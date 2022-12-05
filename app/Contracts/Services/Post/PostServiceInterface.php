@@ -13,11 +13,22 @@ interface PostServiceInterface
     public function index();
 
     /**
+     * Create Category For Post
+     */
+    public function create();
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\PostRequest $request
      */
     public function store(Request $request);
+
+    /**
+     * Edit the specified resource in storage.
+     *
+     * @param  \App\Models\Post  $post
+     */
+    public function edit(Post $post);
 
     /**
      * Update the specified resource in storage.

@@ -3,6 +3,7 @@
 namespace App\Dao\Post;
 
 use App\Models\Post;
+use App\Models\Category;
 use App\Contracts\Dao\Post\PostDaoInterface;
 
 class PostDao implements PostDaoInterface
@@ -16,13 +17,40 @@ class PostDao implements PostDaoInterface
         return Post::latest()->paginate(5);
     }
 
+    //Get Category Data
+    public function create()
+    {
+      return Category::all();
+    }
+
+    //Edit Post Data
+    public function edit($post)
+    {
+        $post =Post::findOrFail($post->id);
+        // dd($post);
+        $categories= Category::all();
+        return array("post"=>$post,"categories"=>$categories);
+    
+    }
+
     /**
      * Show the form for creating a new resource.
      * @param  \App\Http\Requests\PostRequest $request
      */
     public function store($request)
     {
-        return $post = Post::create($request->all());
+      
+        $post = Post::create([
+        'title'=>$request->title,
+        'description'=>$request->description,
+        'status'=>$request->status
+
+      ]);
+      
+      $post->categories()->attach($request->category);
+      
+      return $post;
+
     }
 
     /**
@@ -34,7 +62,16 @@ class PostDao implements PostDaoInterface
 
     public function update($request, $post)
     {
-        return $post->update($request->all());
+        // return $post->update($request->all());
+       $post = Post::findOrFail($post->id);
+       $post->update([
+        'title'=>$request->title,
+        'description'=>$request->description,
+        'status'=>$request->status
+       ]);
+       $post->categories()->detach($post->categories);
+       $post->categories()->attach($request->category);
+       return $post;
     }
 
     /**

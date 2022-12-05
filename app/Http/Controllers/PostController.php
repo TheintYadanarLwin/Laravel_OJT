@@ -29,13 +29,12 @@ class PostController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     *Get Category Data in Post Create Route
      */
     public function create()
     {
-        return view('posts.create');
+        $categories = $this->postService->create();
+        return view('posts.create',compact('categories'));
     }
 
     /**
@@ -46,7 +45,9 @@ class PostController extends Controller
      */
     public function store(PostRequest $request)
     {
+      
         $posts = $this->postService->store($request);
+        
         return redirect()->route('posts.index', compact('posts'))->with('success', 'Post has been created successfully.');
     }
 
@@ -69,7 +70,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('posts.edit', compact('post'));
+        $posts = $this->postService->edit($post);
+        return view('posts.edit', compact('posts'));
     }
 
     /**
@@ -95,5 +97,18 @@ class PostController extends Controller
     {
         $posts = $this->postService->destroy($post);
         return redirect()->route('posts.index', compact('posts'))->with('success', 'Post has been deleted successfully');
+    }
+
+    /**
+     * pivot table
+     */
+    public function categorypost()
+    {
+        $posts=Post::find(1);
+
+        foreach ($posts->categories()->get() as $categorypost) {
+            $categorypost->pivot->name;
+        }
+        return view('posts.create',compact('posts'));
     }
 }

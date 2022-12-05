@@ -12,6 +12,7 @@ class CategoryDao implements CategoryDaoInterface
      */
     public function index()
     {
+        // return Category::with('posts','categories')->get();
         return Category::latest()->paginate(5);
     }
 
@@ -32,10 +33,22 @@ class CategoryDao implements CategoryDaoInterface
      * @param  \App\Models\Category $category
      */
 
+    public function edit($request, $category)
+    {
+        return $category->update($request->all());
+    }
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \App\Http\Requests\CategoryRequest $request
+     * @param  \App\Models\Category $category
+     */
+
     public function update($request, $category)
     {
         return $category->update($request->all());
     }
+
 
     /**
      * Remove the specified resource from storage.

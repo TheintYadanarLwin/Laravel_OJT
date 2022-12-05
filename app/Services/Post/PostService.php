@@ -27,6 +27,21 @@ class PostService implements PostServiceInterface
     }
 
     /**
+     * Create Category into Post Table
+     */
+    public function create()
+    {
+        return $this->postDao->create();
+    }
+
+    /**
+     * Edit Data into Post Table
+     */
+    public function edit(Post $post)
+    {
+        return $this->postDao->edit($post);
+    }
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\PostRequest $request

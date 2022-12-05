@@ -12,12 +12,13 @@ class Post extends Model
         'title',
         'description',
         'status',
+        'category',
         'created_at',
         'updated_at',
         'deleted_at'
     ];
 
     public function categories() {
-        return $this->belongsToMany(Category::class,'category_posts');
+        return $this->belongsToMany(Category::class,'category_posts','post_id','category_id')->withTimestamps();
     }
 }

@@ -29,6 +29,12 @@ CATEGORY LIST
                 </button>
             </b-col>
         </b-row>
+        @if ($message = Session::get('success'))
+        <div class="alert alert-info text-success alert-dismissible fade show" role="alert" >
+                {{$message}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"  aria-label="Close"></button>
+        </div>
+        @endif
         <div class="panel panel-default mt-5">
             <div class="panel-body">
                 <table class="table-latitude">

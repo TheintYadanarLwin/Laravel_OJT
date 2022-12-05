@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -15,6 +16,6 @@ class PostSeeder extends Seeder
      */
     public function run()
     {
-        Post::factory(100)->create();
+        Post::factory(10)->create();      
     }
 }

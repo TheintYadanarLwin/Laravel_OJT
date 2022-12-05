@@ -32,7 +32,7 @@ POST LIST
         @if ($message = Session::get('success'))
             <div class="alert alert-info text-success alert-dismissible fade show" role="alert">
                     {{$message}}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert"  aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"  aria-label="Close"></button> 
             </div>
         @endif
         <div class="panel panel-default mt-5">
@@ -42,6 +42,7 @@ POST LIST
                         <th>Post Title </th>
                         <th>Post Description</th>
                         <th>Posted Use</th>
+                        <th>Category</th>
                         <th>Poseted Date</th>
                         <th></th>
                         <th></th>
@@ -52,7 +53,13 @@ POST LIST
                                 <td> <a href="{{ route('posts.show', $post->id) }}">{{ $post->title }}</a></td>
                                 <td>{{ $post->description }}</td>
                                 <td>{{ $post->status }}</td>
+                                <td>
+                                    @foreach($post->categories as $category)
+                                    {{$category->name}}
+                                    @endforeach
+                                </td>
                                 <td>{{ $post->created_at->format('d/m/Y') }}</td>
+                            
                                 <td><a class="btn btn-primary" href="{{ route('posts.edit', $post->id) }}">Edit</a></td>
                                 <td>
                                     <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
@@ -67,6 +74,7 @@ POST LIST
                 </table>
 
             </div>
+           
             {{-- Pagination --}}
             <div class="d-flex justify-content-center mt-5">
                 {!! $posts->links() !!}
