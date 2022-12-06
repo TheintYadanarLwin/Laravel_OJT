@@ -18,8 +18,7 @@ class PostController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
+     * Display a listing of the resource. 
      * @return \Illuminate\Http\Response
      */
     public function index()
@@ -29,17 +28,17 @@ class PostController extends Controller
     }
 
     /**
-     *Get Category Data in Post Create Route
+     *Get all Category 
+     *@return \Illuminate\Http\Response
      */
-    public function create()
+    public function getallCategories()
     {
-        $categories = $this->postService->create();
+        $categories = $this->postService->getallCategories();
         return view('posts.create',compact('categories'));
     }
 
     /**
      * Store a newly created resource in storage.
-     *
      * @param  \App\Http\Requests\PostRequest $request
      * @return \Illuminate\Http\Response
      */
@@ -53,7 +52,6 @@ class PostController extends Controller
 
     /**
      * Display the specified resource.
-     *
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
@@ -64,19 +62,19 @@ class PostController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     *
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
+     * @return oldCategoryIds
      */
     public function edit(Post $post)
     {
         $posts = $this->postService->edit($post);
-        return view('posts.edit', compact('posts'));
+        $oldCategoryIds = $post->categories->pluck('id')->toArray();
+        return view('posts.edit', compact('posts','oldCategoryIds'));
     }
 
     /**
      * Update the specified resource in storage.
-     *
      * @param  \App\Http\Requests\PostRequest $request
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
@@ -99,16 +97,5 @@ class PostController extends Controller
         return redirect()->route('posts.index', compact('posts'))->with('success', 'Post has been deleted successfully');
     }
 
-    /**
-     * pivot table
-     */
-    public function categorypost()
-    {
-        $posts=Post::find(1);
-
-        foreach ($posts->categories()->get() as $categorypost) {
-            $categorypost->pivot->name;
-        }
-        return view('posts.create',compact('posts'));
-    }
+   
 }

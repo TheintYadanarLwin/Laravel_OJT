@@ -9,13 +9,15 @@ interface PostServiceInterface
 {
     /**
      * Display a listing of the resource.
+     *  @return object
      */
     public function index();
 
     /**
-     * Create Category For Post
+     * Create Category into Post Table
+     * @return object
      */
-    public function create();
+    public function getallCategories();
     /**
      * Store a newly created resource in storage.
      *

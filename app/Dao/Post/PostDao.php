@@ -17,20 +17,29 @@ class PostDao implements PostDaoInterface
         return Post::latest()->paginate(5);
     }
 
-    //Get Category Data
-    public function create()
+    /**
+     * Display a listing of the resource.
+     * @return object
+     */
+    public function getallCategories()
     {
-      return Category::all();
+        return Category::all();
     }
 
-    //Edit Post Data
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \App\Http\Requests\PostRequest $request
+     * @param  \App\Models\Post  $post
+     */
     public function edit($post)
     {
-        $post =Post::findOrFail($post->id);
-        // dd($post);
-        $categories= Category::all();
-        return array("post"=>$post,"categories"=>$categories);
-    
+        $post = Post::findOrFail($post->id);
+        $categories = Category::all();
+        return [
+            "post" => $post,
+            "categories" => $categories,
+        ];
     }
 
     /**
@@ -39,18 +48,14 @@ class PostDao implements PostDaoInterface
      */
     public function store($request)
     {
-      
         $post = Post::create([
-        'title'=>$request->title,
-        'description'=>$request->description,
-        'status'=>$request->status
+            'title' => $request->title,
+            'description' => $request->description,
+            'status' => $request->status
 
-      ]);
-      
-      $post->categories()->attach($request->category);
-      
-      return $post;
-
+        ]);
+        $post->categories()->attach($request->category);
+        return $post;
     }
 
     /**
@@ -62,16 +67,15 @@ class PostDao implements PostDaoInterface
 
     public function update($request, $post)
     {
-        // return $post->update($request->all());
-       $post = Post::findOrFail($post->id);
-       $post->update([
-        'title'=>$request->title,
-        'description'=>$request->description,
-        'status'=>$request->status
-       ]);
-       $post->categories()->detach($post->categories);
-       $post->categories()->attach($request->category);
-       return $post;
+        $post = Post::findOrFail($post->id);
+        $post->update([
+            'title' => $request->title,
+            'description' => $request->description,
+            'status' => $request->status
+        ]);
+        $post->categories()->detach($post->categories);
+        $post->categories()->attach($request->category);
+        return $post;
     }
 
     /**

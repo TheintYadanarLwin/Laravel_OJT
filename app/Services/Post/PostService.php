@@ -28,10 +28,11 @@ class PostService implements PostServiceInterface
 
     /**
      * Create Category into Post Table
+     * @return object
      */
-    public function create()
+    public function getallCategories()
     {
-        return $this->postDao->create();
+        return $this->postDao->getallCategories();
     }
 
     /**

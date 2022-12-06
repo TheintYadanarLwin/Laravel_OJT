@@ -52,14 +52,10 @@
                 </div>
                 <h3 class="text-primary mt-3">Choose Category</h3>
                 <div>
-                    <select class="form-select mt-3" multiple aria-label="size 3" name="category[]" multiple>
-                        <option></option>
-                        @foreach ($categories as $category)
-                            @if ($loop->index === 0)
-                                <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
-                            @else
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
-                            @endif
+                    <select class="form-select mt-3" name="category[]"  placeholder="Category" multiple>
+                        <option>Choose Category</option>
+                        @foreach ($categories as $index =>$category)
+                        <option value="{{ $category->id }}" {{($index === 0) ? 'selected' : ''}}>{{ $category->name }}</option>
                         @endforeach
                     </select>
                     <div>
