@@ -26,7 +26,8 @@ class PostRequest extends FormRequest
         return [
             'title' => 'required|string|max:40',
             'description' => 'required|max:50',
-            'status' => 'required|string|max:50'
+            'status' => 'required|string|max:50',
+            'category'=>'required'
         ];
     }
 
@@ -38,7 +39,7 @@ class PostRequest extends FormRequest
             'status.required' => 'Status is required!',
             'title.max'=> 'Title can not be longer than 40 characters!',
             'description.max'=> 'Description can not be longer than 50 characters!',
-            'status.max'=> 'Status can not be longer than 50 characters!',
+            'status.max'=> 'Status can not be longer than 50 characters!'
         ];
     }
 }

@@ -17,7 +17,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-light bg-info">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">OJT</a>
+            <a class="navbar-brand">OJT</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -29,7 +29,7 @@
                         <a class="nav-link active ml-3" aria-current="page" href="{{ route('posts.index') }}">POST</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link ml-3" href="#">CATEGORY</a>
+                        <a class="nav-link ml-3" href="{{ route('categories.index') }}">CATEGORY</a>
                     </li>
                 </ul>
             </div>

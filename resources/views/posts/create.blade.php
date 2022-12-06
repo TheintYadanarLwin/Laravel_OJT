@@ -1,6 +1,6 @@
 @extends('posts.layout')
 @section('title')
-CREATE POST
+    CREATE POST
 @endsection
 @section('content')
     <div class="row">
@@ -50,10 +50,19 @@ CREATE POST
                         <div class="text-danger mt-1 mb-1">*{{ $message }}*</div>
                     @enderror
                 </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                <button type="submit" class="btn btn-primary mt-3">Submit</button>
-            </div>
-        </div>
+                <h3 class="text-primary mt-3">Choose Category</h3>
+                <div>
+                    <select class="form-select mt-3" name="category[]"  placeholder="Category" multiple>
+                        <option>Choose Category</option>
+                        @foreach ($categories as $index =>$category)
+                        <option value="{{ $category->id }}" {{($index === 0) ? 'selected' : ''}}>{{ $category->name }}</option>
+                        @endforeach
+                    </select>
+                    <div>
     </form>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+        <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </div>
+    </div>
 @endsection

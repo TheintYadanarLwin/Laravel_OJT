@@ -13,11 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title');
-            $table->text('description');
-            $table->string('status');
+            $table->string('name');
             $table->timestamps();
             $table->dateTime('deleted_at')->nullable();
         });
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('categories');
     }
 };

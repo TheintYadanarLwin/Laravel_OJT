@@ -1,6 +1,6 @@
 @extends('posts.layout')
 @section('title')
-EDIT POST
+    EDIT POST
 @endsection
 @section('content')
     <div class="row">
@@ -14,7 +14,7 @@ EDIT POST
         </div>
     </div>
 
-    <form action="{{ route('posts.update', $post->id) }}" method="POST">
+    <form action="{{ route('posts.update', $posts['post']->id) }}" method="POST">
         @csrf
         @method('PUT')
 
@@ -22,7 +22,7 @@ EDIT POST
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Post Title:</strong>
-                    <input type="text" name="title" value="{{ old('title') ? old('title') : $post->title }}"
+                    <input type="text" name="title" value="{{ old('title') ? old('title') : $posts['post']->title }}"
                         class="form-control" placeholder="Post Title">
                     @error('title')
                         <div class="text-danger mt-1 mb-1">*{{ $message }}*</div>
@@ -33,8 +33,8 @@ EDIT POST
                 <div class="form-group">
                     <strong>Description:</strong>
                     <input type="text" name="description"
-                        value="{{ old('description') ? old('description') : $post->description }}" class="form-control"
-                        placeholder="Post Description">
+                        value="{{ old('description') ? old('description') : $posts['post']->description }}"
+                        class="form-control" placeholder="Post Description">
                     @error('description')
                         <div class="text-danger mt-1 mb-1">*{{ $message }}*</div>
                     @enderror
@@ -43,17 +43,38 @@ EDIT POST
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Post Status:</strong>
-                    <input type="text" name="status" value="{{ old('status') ? old('status') : $post->status }}"
-                        class="form-control" placeholder="Post Status">
+                    <input type="text" name="status"
+                        value="{{ old('status') ? old('status') : $posts['post']->status }}" class="form-control"
+                        placeholder="Post Status">
                     @error('status')
                         <div class="text-danger mt-1 mb-1">*{{ $message }}*</div>
                     @enderror
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                <button type="submit" class="btn btn-primary mt-3">Submit</button>
-            </div>
-        </div>
+            <h3 class="text-primary mt-3">Choose Category</h3>
+            <div>
+                <select class="form-select mt-3" name="category[]"  placeholder="Category" multiple>
+
+                    @foreach ($posts['categories'] as $index=>$category)
+                    <option value="{{ $category->id }}" 
+                        @if (in_array($category->id, old('categories', $oldCategoryIds)))
+                            selected
+                        @endif>{{ $category->name }}
+                    </option>
+                    
+             @endforeach
+
+        
+                </select>
+                <div>
+
+                    @error('status')
+                        <div class="text-danger mt-1 mb-1">*{{ $message }}*</div>
+                    @enderror
+                    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                        <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                    </div>
+                </div>
 
     </form>
 @endsection

@@ -1,9 +1,9 @@
 @extends('posts.layout')
 @section('title')
-POST LIST
+CATEGORY LIST
 @endsection
 @section('content')
-        <h2 class="text-center">Post Lists</h2>
+        <h2 class="text-center">Categories Lists</h2>
         <b-row>
             <b-col class="ml-3">
                 <input type="text">
@@ -15,7 +15,7 @@ POST LIST
             </b-col>
             <b-col>
                 <button type="submit" class="btn btn-primary ml-5">
-                    <a class="text-white" href="{{ route('posts.create') }}"> Add</a>
+                    <a class="text-white" href="{{ route('categories.create') }}"> Add</a>
                 </button>
             </b-col>
             <b-col>
@@ -30,39 +30,30 @@ POST LIST
             </b-col>
         </b-row>
         @if ($message = Session::get('success'))
-            <div class="alert alert-info text-success alert-dismissible fade show" role="alert">
-                    {{$message}}
-                <button type="button" class="btn-close" data-bs-dismiss="alert"  aria-label="Close"></button> 
-            </div>
+        <div class="alert alert-info text-success alert-dismissible fade show" role="alert" >
+                {{$message}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"  aria-label="Close"></button>
+        </div>
         @endif
         <div class="panel panel-default mt-5">
             <div class="panel-body">
                 <table class="table-latitude">
                     <thead>
-                        <th>Post Title </th>
-                        <th>Post Description</th>
-                        <th>Posted Use</th>
-                        <th>Category</th>
-                        <th>Poseted Date</th>
+                        <th>Category ID </th>
+                        <th>Category Name</th>
+                        <th>Created Date</th>
                         <th></th>
                         <th></th>
                     </thead>
                     <tbody>
-                        @foreach ($posts as $post)
+                        @foreach ($categories as $category)
                             <tr>
-                                <td> <a href="{{ route('posts.show', $post->id) }}">{{ $post->title }}</a></td>
-                                <td>{{ $post->description }}</td>
-                                <td>{{ $post->status }}</td>
+                                <td>{{ $category->id }}</td>
+                                <td> <a href="{{ route('categories.show', $category->id) }}">{{ $category->name }}</a></td>
+                                <td>{{ $category->created_at->format('d/m/Y') }}</td>
+                                <td><a class="btn btn-primary" href="{{ route('categories.edit', $category->id) }}">Edit</a></td>
                                 <td>
-                                    @foreach($post->categories as $category)
-                                    {{$category->name}}
-                                    @endforeach
-                                </td>
-                                <td>{{ $post->created_at->format('d/m/Y') }}</td>
-                            
-                                <td><a class="btn btn-primary" href="{{ route('posts.edit', $post->id) }}">Edit</a></td>
-                                <td>
-                                    <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
+                                    <form action="{{ route('categories.destroy', $category->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger">Delete</button>
@@ -74,10 +65,9 @@ POST LIST
                 </table>
 
             </div>
-           
             {{-- Pagination --}}
             <div class="d-flex justify-content-center mt-5">
-                {!! $posts->links() !!}
+                {!! $categories->links() !!}
             </div>
         </div>
 @endsection
