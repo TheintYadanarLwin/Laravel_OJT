@@ -15,7 +15,7 @@ interface PostDaoInterface
      * Create Category into Post Table
      * @return object
      */
-    public function getallCategories();
+    public function getAllCategories();
     
     /**
      * Store a newly created resource in storage.

@@ -31,9 +31,9 @@ class PostController extends Controller
      *Get all Category 
      *@return \Illuminate\Http\Response
      */
-    public function getallCategories()
+    public function getAllCategories()
     {
-        $categories = $this->postService->getallCategories();
+        $categories = $this->postService->getAllCategories();
         return view('posts.create',compact('categories'));
     }
 
@@ -64,7 +64,6 @@ class PostController extends Controller
      * Show the form for editing the specified resource.
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
-     * @return oldCategoryIds
      */
     public function edit(Post $post)
     {

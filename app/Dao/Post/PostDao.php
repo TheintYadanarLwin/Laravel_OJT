@@ -21,7 +21,7 @@ class PostDao implements PostDaoInterface
      * Display a listing of the resource.
      * @return object
      */
-    public function getallCategories()
+    public function getAllCategories()
     {
         return Category::all();
     }
