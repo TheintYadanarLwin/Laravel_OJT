@@ -5,14 +5,8 @@ namespace App\Http\Controllers\Api;
 namespace App\Http\Controllers;
 
 use App\Models\Post;
-use App\Exports\PostsExport;
-use App\Imports\PostsImport;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
-use Illuminate\Support\Facades\DB;
-use Maatwebsite\Excel\Facades\Excel;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Http\Response;
 use App\Contracts\Services\Post\PostServiceInterface;
 
 class PostController extends Controller
@@ -103,18 +97,25 @@ class PostController extends Controller
         return redirect()->route('posts.index', compact('posts'))->with('success', 'Post has been deleted successfully');
     }
 
-    //Export CSV For Post
+    /**
+     * Download CSV For Post
+     * @param \App\Models\Post $post
+     * @return mixed
+     */
     public function exportPost(Post $post)
     {
-       
-
-        return Excel::download(new PostsExport, 'Post' . now() . '.csv');
+        $posts = $this->postService->exportPost($post);
+        return $posts;
     }
 
-    //Import CSV For Post
+    /**
+     * Upload CSV For Post
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function importPost(Request $request)
     {
-        Excel::import(new PostsImport, $request->file('file'));
+        $posts = $this->postService->importPost($request);
         return redirect()->route('posts.index')->with('success', 'Post has been uploaded successfully.');
     }
       

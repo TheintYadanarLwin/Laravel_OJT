@@ -3,47 +3,39 @@
 namespace App\Exports;
 
 use App\Models\Post;
-use App\Models\Category;
-
-
-
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
 
-class PostsExport implements FromCollection,WithHeadings,WithMapping
+class PostsExport implements FromCollection, WithHeadings, WithMapping
 {
     use Exportable;
-    public function headings(): array {
+    public function headings(): array
+    {
         return [
-           "Title","Description","Status","category","Updated At","Created At"
+            "Title", "Description", "Status", "category"
         ];
-      }
-    
+    }
+
     public function map($post): array
     {
-    
-         return[
-             $post->title,
-             $post->description,
-             $post->status,
-             $post->categories->name,
-             $post->updated_at->toDatestring(),
-             $post->created_at->toDatestring(),
+        $categoryNames = $post->categories->pluck('name')->toArray();
 
-         ];
+        return [
+            $post->title,
+            $post->description,
+            $post->status,
+            implode('|', $categoryNames),
+
+        ];
     }
 
     /**
-    * @return \Illuminate\Support\Collection
-    */
+     * @return \Illuminate\Support\Collection
+     */
     public function collection()
     {
-        return Post::with('categories')->get()->toArray();
-       
+        return Post::all();
     }
-    
-
-    
 }
