@@ -35,7 +35,6 @@ class PostsImport implements ToModel
 
             $categoryIds[] = $existCategory->id;
         }
-        info($categoryIds);
         $post->categories()->detach();
         $post->categories()->attach($categoryIds);
         return $post;
