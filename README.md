@@ -35,25 +35,27 @@ _inserting data into tables_
 npm run dev
 php artisan serve
 ```
-
+## If You're Having Some error in download pdf
 #### Laravel/Excel Package
 
-`composer require maatwebsite/excel`
+
 _If you're having error when install this package_
 `composer require maatwebsite/excel`
 
+#### Use this command Instead
 ```
 composer require maatwebsite/excel --ignore-platform-reqs
-or
+                        or
 composer require psr/simple-cache:^2.0 maatwebsite/excel
 ```
-_in php.ini file remove ; infront of extension=gd _
+
+_Then in `php.ini` file remove `;` infront of `extension=gd`_
 
 #### How To Solve storage/framework" directory does not exist, the import will throw an exception: mkdir(): No such file or directory[BUG] 
 
 _Additional Information
 And I Create "storage/framework" folder manually, it's worked
-Or
+    Or
 modify source code:
 the file at vendor/maatwebsite/excel/src/Files/TemporaryFileFactory.php line:52_
 ```
