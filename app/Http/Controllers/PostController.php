@@ -5,8 +5,9 @@ namespace App\Http\Controllers\Api;
 namespace App\Http\Controllers;
 
 use App\Models\Post;
-use App\Contracts\Services\Post\PostServiceInterface;
+use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
+use App\Contracts\Services\Post\PostServiceInterface;
 
 class PostController extends Controller
 {
@@ -34,7 +35,7 @@ class PostController extends Controller
     public function getAllCategories()
     {
         $categories = $this->postService->getAllCategories();
-        return view('posts.create',compact('categories'));
+        return view('posts.create', compact('categories'));
     }
 
     /**
@@ -44,9 +45,9 @@ class PostController extends Controller
      */
     public function store(PostRequest $request)
     {
-      
+
         $posts = $this->postService->store($request);
-        
+
         return redirect()->route('posts.index', compact('posts'))->with('success', 'Post has been created successfully.');
     }
 
@@ -69,7 +70,7 @@ class PostController extends Controller
     {
         $posts = $this->postService->edit($post);
         $oldCategoryIds = $post->categories->pluck('id')->toArray();
-        return view('posts.edit', compact('posts','oldCategoryIds'));
+        return view('posts.edit', compact('posts', 'oldCategoryIds'));
     }
 
     /**
@@ -96,5 +97,27 @@ class PostController extends Controller
         return redirect()->route('posts.index', compact('posts'))->with('success', 'Post has been deleted successfully');
     }
 
-   
+    /**
+     * Download CSV For Post
+     * @param \App\Models\Post $post
+     * @return mixed
+     */
+    public function exportPost(Post $post)
+    {
+        $posts = $this->postService->exportPost($post);
+        return $posts;
+    }
+
+    /**
+     * Upload CSV For Post
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function importPost(Request $request)
+    {
+        $posts = $this->postService->importPost($request);
+        return redirect()->route('posts.index')->with('success', 'Post has been uploaded successfully.');
+    }
+      
 }
+

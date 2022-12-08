@@ -29,6 +29,11 @@ Route::put('/posts/{post}', [PostController::class, 'update'])->name('posts.upda
 Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('posts.edit');
 Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
 
+//CSV Export For Post
+Route::get('/export-post', [PostController::class, 'exportPost'])->name('export-post');
+//CSV Import For Post
+Route::post('/import-post', [PostController::class, 'importPost'])->name('import-post');
+
 //Route for Categories
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
 Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
