@@ -25,6 +25,13 @@
                 </ul>
             </div>
         </div>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('signout') }}">Logout</a>
+                </li>
+            </ul>
+        </div>
     </nav>
     <div class="container">
         @yield('content')

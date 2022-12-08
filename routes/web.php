@@ -4,6 +4,7 @@ use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,8 +18,15 @@ use App\Http\Controllers\CategoryController;
 */
 
 Route::get('/', function () {
-    return redirect('/posts');
+    return redirect('/login');
 });
+
+//Route For Register And Login
+Route::get('login', [AuthController::class, 'index'])->name('login');
+Route::post('custom-login', [AuthController::class, 'customLogin'])->name('login.custom');
+Route::get('registration', [AuthController::class, 'registration'])->name('register-user');
+Route::post('custom-registration', [AuthController::class, 'registerToCreateUser'])->name('register.custom');
+Route::get('signout', [AuthController::class, 'signOut'])->name('signout');
 
 //Route for Posts
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
