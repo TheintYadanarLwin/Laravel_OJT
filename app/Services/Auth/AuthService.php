@@ -1,11 +1,7 @@
 <?php
-
 namespace App\Services\Auth;
-
 use App\Contracts\Dao\Auth\AuthDaoInterface;
 use App\Contracts\Services\Auth\AuthServiceInterface;
-
-
 class AuthService implements AuthServiceInterface
 {
     private $authDao;
@@ -20,9 +16,9 @@ class AuthService implements AuthServiceInterface
      * @param mixed $request
      * @return mixed
      */
-    public function registerToCreateUser($request)
+    public function register($request)
     {
-        return $this->authDao->registerToCreateUser($request);
+        return $this->authDao->register($request);
     }
 }
 

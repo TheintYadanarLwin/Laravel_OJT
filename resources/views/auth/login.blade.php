@@ -8,18 +8,23 @@
             <div class="card">
                 <h3 class="card-header text-center">Login</h3>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('login.custom') }}">
+                    @if ($message = Session::get('error'))
+                        <div class="alert alert-dismissible alert-danger fade show" role="alert">
+                            {{ $message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
+                    <form method="POST" action="{{ route('auth.login') }}">
                         @csrf
                         <div class="form-group mb-3">
-                            <input type="text" placeholder="Email" id="email" class="form-control" name="email"
-                                required autofocus>
+                            <input type="text" placeholder="Email" id="email" class="form-control" name="email" value="{{ old('email') }}">
                             @error('email')
                                 <div class="text-danger mt-1 mb-1">*{{ $message }}*</div>
                             @enderror
                         </div>
                         <div class="form-group mb-3">
                             <input type="password" placeholder="Password" id="password" class="form-control"
-                                name="password" required>
+                                name="password" >
                             @error('password')
                                 <div class="text-danger mt-1 mb-1">*{{ $message }}*</div>
                             @enderror

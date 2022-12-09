@@ -9,6 +9,6 @@ interface AuthServiceInterface
      * @param mixed $request
      * @return mixed
      */
-    public function registerToCreateUser($request);
+    public function register($request);
 }
 

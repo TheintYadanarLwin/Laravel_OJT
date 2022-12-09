@@ -11,6 +11,7 @@ use App\Contracts\Services\Auth\AuthServiceInterface;
 class AuthController extends Controller
 {
     private $authService;
+
     public function __construct(AuthServiceInterface $authService)
     {
         $this->authService = $authService;
@@ -25,17 +26,19 @@ class AuthController extends Controller
      * @param \App\Http\Requests\LoginRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function customLogin(LoginRequest $request)
+    public function login(LoginRequest $request)
     {
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             return redirect("posts")
                 ->withSuccess('Welcome Back!You have Signed in.');
         }
-        return redirect("login")->withError('Sorry! Login details are not valid');
+        return redirect("login")->with('error','Sorry! Login details are not valid');
     }
 
-
+    /**
+     * Register route
+     */
     public function registration()
     {
         return view('auth.registration');
@@ -46,9 +49,11 @@ class AuthController extends Controller
      * @param \App\Http\Requests\UserRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function registerToCreateUser(UserRequest $request)
+    public function register(UserRequest $request)
     {
-        $this->authService->registerToCreateUser($request);
+        $user = $this->authService->register($request);
+      
+        Auth::login($user);
         return redirect("posts")->with('success', 'Welcome ! You have signed-in Successfully ');
     }
 

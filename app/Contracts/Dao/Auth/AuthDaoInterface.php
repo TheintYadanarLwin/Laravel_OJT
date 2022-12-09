@@ -1,9 +1,5 @@
 <?php
-
 namespace App\Contracts\Dao\Auth;
-
-
-
 interface AuthDaoInterface
 {
     /**
@@ -11,5 +7,5 @@ interface AuthDaoInterface
      * @param mixed $request
      * @return mixed
      */
-    public function registerToCreateUser($request);
+    public function register($request);
 }

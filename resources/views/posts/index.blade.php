@@ -1,4 +1,4 @@
-<script type="text/javascript" src="http://code.jquery.com/jquery-2.0.0.js"></script>
+
 @extends('posts.layout')
 @section('title')
     POST LIST
@@ -20,7 +20,7 @@
         </div>
     </div>
     @if ($message = Session::get('success'))
-        <div class="alert alert-info text-success alert-dismissible fade show" role="alert">
+        <div class="alert alert-success text-white alert-dismissible fade show" role="alert">
             {{ $message }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>

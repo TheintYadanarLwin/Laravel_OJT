@@ -8,12 +8,10 @@
             <div class="card">
                 <h3 class="card-header text-center">Register User</h3>
                 <div class="card-body">
-                    <form action="{{ route('register.custom') }}" method="POST">
+                    <form action="{{ route('auth.register') }}" method="POST">
                         @csrf
                         <div class="form-group mb-3">
-                            {{-- <input type="text" placeholder="Name" id="name" class="form-control" name="name"
-                                     > --}}
-                            <input type="text" name="name" class="form-control" placeholder="Enter Name">
+                            <input type="text" name="name" class="form-control" placeholder="Name" value="{{ old('name') }}">
                             @error('name')
                                 <div class="text-danger mt-1 mb-1">*{{ $message }}*</div>
                             @enderror
@@ -21,7 +19,7 @@
                         </div>
                         <div class="form-group mb-3">
                             <input type="text" placeholder="Email" id="email_address" class="form-control"
-                                name="email">
+                                name="email" value="{{ old('email') }}">
                             @error('email')
                                 <div class="text-danger mt-1 mb-1">*{{ $message }}*</div>
                             @enderror
@@ -32,11 +30,6 @@
                             @error('password')
                                 <div class="text-danger mt-1 mb-1">*{{ $message }}*</div>
                             @enderror
-                        </div>
-                        <div class="form-group mb-3">
-                            <div class="checkbox">
-                                <label><input type="checkbox" name="remember"> Remember Me</label>
-                            </div>
                         </div>
                         <div class="d-grid mx-auto">
                             <button type="submit" class="btn btn-dark btn-block">Sign up</button>

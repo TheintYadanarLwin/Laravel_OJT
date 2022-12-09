@@ -31,6 +31,11 @@ class UserRequest extends FormRequest
         ];
     }
 
+    /**
+     * Get the validation rules that apply to the request for Registeruser.
+     *
+     * @return array
+     */
     public function messages()
     {
         return [

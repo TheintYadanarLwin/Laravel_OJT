@@ -15,7 +15,7 @@ class AuthDao implements AuthDaoInterface
      * @param mixed $request
      * @return mixed
      */
-    public function registerToCreateUser($request)
+    public function register($request)
     {
         $user = $request->all();
         return User::create([

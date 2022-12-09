@@ -22,15 +22,11 @@
                     <li class="nav-item">
                         <a class="nav-link ml-3" href="{{ route('categories.index') }}">CATEGORY</a>
                     </li>
+                    <li class="nav-item ">
+                        <a class=" btn-danger btn" href="{{ route('signout') }}">Logout</a>
+                    </li>
                 </ul>
             </div>
-        </div>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('signout') }}">Logout</a>
-                </li>
-            </ul>
         </div>
     </nav>
     <div class="container">

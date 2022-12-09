@@ -28,6 +28,12 @@ class LoginRequest extends FormRequest
             'password' => 'required',
         ];
     }
+
+    /**
+     * Get the validation rules that apply to the request for Login.
+     *
+     * @return array
+     */
     public function messages()
     {
         return [
@@ -37,4 +43,3 @@ class LoginRequest extends FormRequest
         ];
     }
 }
-
