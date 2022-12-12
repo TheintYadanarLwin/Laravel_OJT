@@ -47,8 +47,8 @@ class PostController extends Controller
     {
 
         $posts = $this->postService->store($request);
-
-        return redirect()->route('posts.index', compact('posts'))->with('success', 'Post has been created successfully.');
+        return redirect()->route('posts.index', compact('posts'))
+            ->with('success', 'Product created successfully.');
     }
 
     /**
@@ -79,12 +79,19 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
+
     public function update(PostRequest $request, Post $post)
     {
         $posts = $this->postService->update($request, $post);
         return redirect()->route('posts.index', compact('posts'))->with('success', 'Post Has Been updated successfully');
     }
-
+    // public function update(Request $request, Post $post)
+    // {
+    
+    
+    //     return redirect()->route('posts.index')
+    //                     ->with('success','Product updated successfully');
+    // }
     /**
      * Remove the specified resource from storage.
      *
@@ -118,6 +125,4 @@ class PostController extends Controller
         $posts = $this->postService->importPost($request);
         return redirect()->route('posts.index')->with('success', 'Post has been uploaded successfully.');
     }
-      
 }
-

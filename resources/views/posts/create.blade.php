@@ -50,15 +50,25 @@
                         <div class="text-danger mt-1 mb-1">*{{ $message }}*</div>
                     @enderror
                 </div>
-                <h3 class="text-primary mt-3">Choose Category</h3>
+                <strong>Choose Category</strong>
                 <div>
-                    <select class="form-select mt-3" name="category[]"  placeholder="Category" multiple>
-                        <option>Choose Category</option>
-                        @foreach ($categories as $index =>$category)
-                        <option value="{{ $category->id }}" {{($index === 0) ? 'selected' : ''}}>{{ $category->name }}</option>
+                    <select class="form-select mt-3" name="category[]" placeholder="Category" multiple>
+                        @foreach ($categories as $index => $category)
+                            <option value="{{ $category->id }}" {{ $index === 0 ? 'selected' : '' }}>
+                                {{ $category->name }}</option>
                         @endforeach
                     </select>
                     <div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 mt-5">
+                            <div class="form-group">
+                                <strong>Post Image:</strong>
+                                <input type="file" name="image" class="form-control" placeholder="Post Image">
+                                @error('image')
+                                    <div class="text-danger mt-1 mb-1">*{{ $message }}*</div>
+                                @enderror
+                            </div>
+                        </div>
+
     </form>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12 text-center">

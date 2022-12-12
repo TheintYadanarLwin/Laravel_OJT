@@ -52,11 +52,19 @@ class PostDao implements PostDaoInterface
      */
     public function store($request)
     {
+        $input = $request->all();
+        if ($image = $request->file('image')) {
+            $destinationPath = public_path('\images');
+            $profileImage = $image->getClientOriginalName();
+
+            $image->move($destinationPath, $profileImage);
+            $input['image'] = "$profileImage";
+        }
         $post = Post::create([
             'title' => $request->title,
             'description' => $request->description,
-            'status' => $request->status
-
+            'status' => $request->status,
+            'image' => $input['image'],
         ]);
         $post->categories()->attach($request->category);
         return $post;
@@ -72,10 +80,21 @@ class PostDao implements PostDaoInterface
     public function update($request, $post)
     {
         $post = Post::findOrFail($post->id);
+        $profileImage = null;
+
+        if ($image = $request->file('image')) {
+            $destinationPath = public_path('\images');
+            $profileImage = $image->getClientOriginalName();
+
+            $image->move($destinationPath, $profileImage);
+        } else {
+            unset($profileImage);
+        }
         $post->update([
             'title' => $request->title,
             'description' => $request->description,
-            'status' => $request->status
+            'status' => $request->status,
+            'image' => $profileImage,
         ]);
         $post->categories()->detach();
         $post->categories()->attach($request->category);

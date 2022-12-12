@@ -14,7 +14,7 @@
         </div>
     </div>
 
-    <form action="{{ route('posts.update', $posts['post']->id) }}" method="POST">
+    <form action="{{ route('posts.update', $posts['post']->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
@@ -51,30 +51,36 @@
                     @enderror
                 </div>
             </div>
-            <h3 class="text-primary mt-3">Choose Category</h3>
+            <strong>Choose Category</strong>
             <div>
-                <select class="form-select mt-3" name="category[]"  placeholder="Category" multiple>
-
-                    @foreach ($posts['categories'] as $index=>$category)
-                    <option value="{{ $category->id }}" 
-                        @if (in_array($category->id, old('categories', $oldCategoryIds)))
-                            selected
-                        @endif>{{ $category->name }}
-                    </option>
-                    
-             @endforeach
-
-        
+                <select class="form-select mt-3" name="category[]" placeholder="Category" multiple>
+                    @foreach ($posts['categories'] as $index => $category)
+                        <option value="{{ $category->id }}" @if (in_array($category->id, old('categories', $oldCategoryIds))) selected @endif>
+                            {{ $category->name }}
+                        </option>
+                    @endforeach
                 </select>
                 <div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 mt-5">
+                        <div class="form-group">
+                            <strong>Post Image:</strong>
 
-                    @error('status')
-                        <div class="text-danger mt-1 mb-1">*{{ $message }}*</div>
-                    @enderror
-                    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                        <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                            <input type="file" name="image" class="form-control"
+                                placeholder="{{ old('image') ? old('image') : $posts['post']->image }}"
+                                value="{{ old('image') ? old('image') : $posts['post']->image }}">
+
+                            <img src="/images/{{ $posts['post']->image }}" width='100' height='100'
+                                class="img img-responsive mt-3">
+
+                            @error('image')
+                                <div class="text-danger mt-1 mb-1">*{{ $message }}*</div>
+                            @enderror
+                        </div>
                     </div>
-                </div>
 
+                </div>
     </form>
+    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+        <button type="submit" class="btn btn-primary mt-3">Update</button>
+    </div>
 @endsection

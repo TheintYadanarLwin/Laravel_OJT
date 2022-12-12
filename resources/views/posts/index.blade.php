@@ -1,4 +1,3 @@
-
 @extends('posts.layout')
 @section('title')
     POST LIST
@@ -37,10 +36,11 @@
                 <table class="table-latitude">
                     <thead>
                         <th>Post Title </th>
+                        <th>Post Image</td>
                         <th>Post Description</th>
-                        <th>Posted Use</th>
+                        <th>Post Status</th>
                         <th>Categories</th>
-                        <th>Poseted Date</th>
+                        <th>Posted Date</th>
                         <th></th>
                         <th></th>
                     </thead>
@@ -48,6 +48,10 @@
                         @foreach ($posts as $post)
                             <tr>
                                 <td> <a href="{{ route('posts.show', $post->id) }}">{{ $post->title }}</a></td>
+                                <td>
+                                    <img src="images/{{ $post->image }}" width='100' height='100'
+                                        class="img img-responsive">
+                                </td>
                                 <td>{{ $post->description }}</td>
                                 <td>{{ $post->status }}</td>
                                 <td>

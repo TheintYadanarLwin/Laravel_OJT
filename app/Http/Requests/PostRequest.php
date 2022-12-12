@@ -27,7 +27,8 @@ class PostRequest extends FormRequest
             'title' => 'required|string|max:40',
             'description' => 'required|max:50',
             'status' => 'required|string|max:50',
-            'category'=>'required'
+            'category' => 'required',
+            'image' => 'required|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
 
@@ -37,9 +38,10 @@ class PostRequest extends FormRequest
             'title.required' => 'Title is required!',
             'description.required' => 'Description is required!',
             'status.required' => 'Status is required!',
-            'title.max'=> 'Title can not be longer than 40 characters!',
-            'description.max'=> 'Description can not be longer than 50 characters!',
-            'status.max'=> 'Status can not be longer than 50 characters!'
+            'title.max' => 'Title can not be longer than 40 characters!',
+            'description.max' => 'Description can not be longer than 50 characters!',
+            'status.max' => 'Status can not be longer than 50 characters!',
+            'image.required' => 'Please Upload Image For Post!'
         ];
     }
 }

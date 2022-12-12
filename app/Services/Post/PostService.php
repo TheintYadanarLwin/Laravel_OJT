@@ -4,6 +4,7 @@ namespace App\Services\Post;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use App\Http\Requests\PostRequest;
 use App\Contracts\Dao\Post\PostDaoInterface;
 use App\Contracts\Services\Post\PostServiceInterface;
 
@@ -48,7 +49,7 @@ class PostService implements PostServiceInterface
      * @param  \App\Http\Requests\PostRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
         return $this->postDao->store($request);
     }

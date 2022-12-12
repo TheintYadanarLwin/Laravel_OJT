@@ -33,7 +33,7 @@ class AuthController extends Controller
             return redirect("posts")
                 ->withSuccess('Welcome Back!You have Signed in.');
         }
-        return redirect("login")->with('error','Sorry! Login details are not valid');
+        return redirect("login")->with('error', 'Sorry! Login details are not valid');
     }
 
     /**
@@ -52,7 +52,7 @@ class AuthController extends Controller
     public function register(UserRequest $request)
     {
         $user = $this->authService->register($request);
-      
+
         Auth::login($user);
         return redirect("posts")->with('success', 'Welcome ! You have signed-in Successfully ');
     }
