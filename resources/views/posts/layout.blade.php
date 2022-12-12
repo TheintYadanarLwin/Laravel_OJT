@@ -3,6 +3,7 @@
 
 <head>
     <title>@yield('title')</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.0.0.js"></script>
     @vite(['resources/js/app.js'])
 </head>
 
@@ -17,10 +18,21 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active ml-3" aria-current="page" href="{{ route('posts.index') }}">POST</a>
+                        <a class="nav-link active ml-12" aria-current="page" href="{{ route('posts.index') }}">POST</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link ml-3" href="{{ route('categories.index') }}">CATEGORY</a>
+                        <a class="nav-link ml-12" href="{{ route('categories.index') }}">CATEGORY</a>
+                    </li>
+                    <li class="nav-item float-right">
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Profile
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li class="text-center align-center"><a class=" btn-danger btn" href="{{ route('signout') }}">Logout</a></li>
+                            </ul>
+                        </div>
                     </li>
                 </ul>
             </div>
@@ -29,7 +41,5 @@
     <div class="container">
         @yield('content')
     </div>
-
 </body>
-
 </html>
