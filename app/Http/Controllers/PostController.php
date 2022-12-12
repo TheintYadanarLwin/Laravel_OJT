@@ -70,7 +70,9 @@ class PostController extends Controller
     {
         $posts = $this->postService->edit($post);
         $oldCategoryIds = $post->categories->pluck('id')->toArray();
-        return view('posts.edit', compact('posts', 'oldCategoryIds'));
+        $post = $posts['post'];
+        $categories = $posts['categories'];
+        return view('posts.edit', compact('post', 'categories', 'oldCategoryIds'));
     }
 
     /**
@@ -85,13 +87,7 @@ class PostController extends Controller
         $posts = $this->postService->update($request, $post);
         return redirect()->route('posts.index', compact('posts'))->with('success', 'Post Has Been updated successfully');
     }
-    // public function update(Request $request, Post $post)
-    // {
-    
-    
-    //     return redirect()->route('posts.index')
-    //                     ->with('success','Product updated successfully');
-    // }
+
     /**
      * Remove the specified resource from storage.
      *

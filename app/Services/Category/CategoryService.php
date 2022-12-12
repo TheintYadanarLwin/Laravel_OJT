@@ -2,8 +2,6 @@
 
 namespace App\Services\Category;
 
-use App\Models\Category;
-use Illuminate\Http\Request;
 use App\Contracts\Dao\Category\CategoryDaoInterface;
 use App\Contracts\Services\Category\CategoryServiceInterface;
 
@@ -30,7 +28,7 @@ class CategoryService implements CategoryServiceInterface
      *
      * @param  \App\Http\Requests\CategoryRequest $request
      */
-    public function store(Request $request)
+    public function store($request)
     {
         return $this->categoryDao->store($request);
     }
@@ -41,7 +39,7 @@ class CategoryService implements CategoryServiceInterface
      * @param  \App\Http\Requests\CategoryRequest $request
      * @param  \App\Models\Category $category
      */
-    public function update(Request $request, Category $category)
+    public function update($request,$category)
     {
         return $this->categoryDao->update($request, $category);
     }
@@ -51,7 +49,7 @@ class CategoryService implements CategoryServiceInterface
      *
      * @param  \App\Models\Category $category
      */
-    public function destroy(Category $category)
+    public function destroy($category)
     {
         return $this->categoryDao->destroy($category);
     }
