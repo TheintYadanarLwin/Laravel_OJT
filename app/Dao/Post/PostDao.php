@@ -51,15 +51,15 @@ class PostDao implements PostDaoInterface
      */
     public function store($request)
     {
-        $imageName= '';
-        if ($image = $request->file('image')) {
-         $destinationPath = public_path('\images');
-         $imageName= time().".".$image->getClientOriginalName();
-         $image->move($destinationPath, $imageName);
+        $imageName = null;
+        if (!is_null($image = $request->file('image'))) {
+            $destinationPath = public_path('\images');
+            $imageName = time() . "." . $image->getClientOriginalName();
+            $image->move($destinationPath, $imageName);
         }
         $post = Post::create([
             'title' => $request->title,
-            'description' => $request->description, 
+            'description' => $request->description,
             'status' => $request->status,
             'image' => $imageName,
         ]);
@@ -77,13 +77,13 @@ class PostDao implements PostDaoInterface
     public function update($request, $post)
     {
         $post = Post::findOrFail($post->id);
-        $imageName= '';
+        $imageName = $post->image;
 
-        if ($image = $request->file('image')) {
+        if (!is_null($image = $request->file('image'))) {
             $destinationPath = public_path('\images');
-            $imageName= $image->getClientOriginalName();
+            $imageName = $image->getClientOriginalName();
             $image->move($destinationPath, $imageName);
-        } 
+        }
         $post->update([
             'title' => $request->title,
             'description' => $request->description,

@@ -21,6 +21,26 @@
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
+                    <strong>Update Post Image:</strong>
+                    <div class='field'>
+                        <input type='file' name='image' id='image' class='image' class="form-control"
+                            style="display: none;" value="{{ old('image') ? old('image') : $post->image }}" />
+                        <label for="image" style="display: block; height: 150px; width: 150px;">
+                            @if ($post->image === null)
+                                <img id="preview_image" src="/test/default.png" alt="default image" class="img-thumbnail" />
+                            @else
+                                <img id="preview_image" src="/images/{{ $post->image }}" alt="{{ $post->image }}"
+                                    class="img-thumbnail" />
+                            @endif
+                        </label>
+                        @error('image')
+                        </div>
+                        <div class="text-danger mt-1 mb-1">*{{ $message }}*</div>
+                    @enderror
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
                     <strong>Post Title:</strong>
                     <input type="text" name="title" value="{{ old('title') ? old('title') : $post->title }}"
                         class="form-control" placeholder="Post Title">
@@ -33,8 +53,8 @@
                 <div class="form-group">
                     <strong>Description:</strong>
                     <input type="text" name="description"
-                        value="{{ old('description') ? old('description') : $post->description }}"
-                        class="form-control" placeholder="Post Description">
+                        value="{{ old('description') ? old('description') : $post->description }}" class="form-control"
+                        placeholder="Post Description">
                     @error('description')
                         <div class="text-danger mt-1 mb-1">*{{ $message }}*</div>
                     @enderror
@@ -43,9 +63,8 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Post Status:</strong>
-                    <input type="text" name="status"
-                        value="{{ old('status') ? old('status') : $post->status }}" class="form-control"
-                        placeholder="Post Status">
+                    <input type="text" name="status" value="{{ old('status') ? old('status') : $post->status }}"
+                        class="form-control" placeholder="Post Status">
                     @error('status')
                         <div class="text-danger mt-1 mb-1">*{{ $message }}*</div>
                     @enderror
@@ -60,20 +79,6 @@
                         </option>
                     @endforeach
                 </select>
-                <div>
-                    <div class="col-xs-12 col-sm-12 col-md-12 mt-5">
-                        <div class="form-group">
-                            <strong>Post Image:</strong>
-                            <input type="file" name="image" class="form-control" value="{{ old('image') ? old('image') : $post->image }}">
-                            <img src="/images/{{ $post->image }}" width='100' height='100'
-                            class="img img-responsive mt-3">
-                            @error('image')
-                                <div class="text-danger mt-1 mb-1">*{{ $message }}*</div>
-                            @enderror
-                        </div>
-                    </div>
-
-                </div>
     </form>
     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
         <button type="submit" class="btn btn-primary mt-3">Update</button>

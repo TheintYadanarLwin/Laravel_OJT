@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,15 +18,16 @@ use App\Http\Controllers\AuthController;
 */
 
 Route::get('/', function () {
-    return redirect('/login');
-})->middleware(['auth', 'verified']);
+    return redirect('/home');
+});
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 //Route For Register And Login
 Route::get('login', [AuthController::class, 'index'])->name('login');
 Route::post('createlogin', [AuthController::class, 'login'])->name('auth.login');
 Route::get('registration', [AuthController::class, 'registration'])->name('register-user');
 Route::post('custom-registration', [AuthController::class, 'register'])->name('auth.register');
-Route::get('signout', [AuthController::class, 'signOut'])->name('signout');
+Route::get('signout', [AuthController::class, 'signOut'])->name('signout')->middleware(['auth', 'verified']);
 
 //Route for Posts
 Route::middleware('auth')->group(function () {

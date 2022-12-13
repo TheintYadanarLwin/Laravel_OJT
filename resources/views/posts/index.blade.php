@@ -19,7 +19,7 @@
         </div>
     </div>
     @if ($message = Session::get('success'))
-        <div class="alert alert-success text-white alert-dismissible fade show" role="alert">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ $message }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
@@ -35,8 +35,8 @@
                 <h2>Post Lists</h2>
                 <table class="table-latitude">
                     <thead>
-                        <th>Post Title </th>
                         <th>Post Image</td>
+                        <th>Post Title </th>
                         <th>Post Description</th>
                         <th>Post Status</th>
                         <th>Categories</th>
@@ -47,10 +47,16 @@
                     <tbody>
                         @foreach ($posts as $post)
                             <tr>
-                                <td> <a href="{{ route('posts.show', $post->id) }}">{{ $post->title }}</a></td>
                                 <td>
-                                    <img src="images/{{ $post->image }}" width='100' height='100'
-                                        class="img img-responsive">
+                                    @if ($post->image === null)
+                                        <img src="/test/default.png" width='100' height='100'
+                                            class="img img-responsive">
+                                    @else
+                                        <img src="/images/{{ $post->image }}" width='100' height='100'
+                                            class="img img-responsive">
+                                    @endif
+                                </td>
+                                <td class="mt-3"> <a href="{{ route('posts.show', $post->id) }}">{{ $post->title }}</a>
                                 </td>
                                 <td>{{ $post->description }}</td>
                                 <td>{{ $post->status }}</td>
@@ -99,4 +105,3 @@
                     });
             });
     </script>
-    

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Log;
 use Illuminate\Foundation\Http\FormRequest;
 
 class PostRequest extends FormRequest
@@ -21,6 +22,7 @@ class PostRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
+
     public function rules()
     {
         return [
@@ -28,7 +30,8 @@ class PostRequest extends FormRequest
             'description' => 'required|max:50',
             'status' => 'required|string|max:50',
             'category' => 'required',
-            'image' => 'required|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'old_image' => ['nullable'],
+            'image'  => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
 
@@ -41,7 +44,6 @@ class PostRequest extends FormRequest
             'title.max' => 'Title can not be longer than 40 characters!',
             'description.max' => 'Description can not be longer than 50 characters!',
             'status.max' => 'Status can not be longer than 50 characters!',
-            'image.required' => 'Please Upload Image For Post!'
         ];
     }
 }

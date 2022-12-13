@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-info">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <h2 class="navbar-brand">OJT</h2>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -42,4 +42,15 @@
         @yield('content')
     </div>
 </body>
+<script type="text/javascript">
+    $(document).ready(function(e) {
+        $('#image').change(function() {
+            let reader = new FileReader();
+            reader.onload = (e) => {
+                $('#preview_image').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(this.files[0]);
+        });
+    });
+</script>
 </html>
