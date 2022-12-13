@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserRequest extends FormRequest
+class PasswordRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,28 +23,17 @@ class UserRequest extends FormRequest
      */
     public function rules()
     {
-       
         return [
-            'name' => 'required|string|max:40',
-            'email' => 'required|unique:users,email,'.auth()->id(),
-            'password' => 'sometimes|min:6',
-
+            'old_password' => 'required',
+            'new_password' => 'required|confirmed',
         ];
     }
 
-    /**
-     * Get the validation rules that apply to the request for Registeruser.
-     *
-     * @return array
-     */
     public function messages()
     {
         return [
-            'name.required' => 'Name is required!',
-            'email.required' => 'Email is required!',
-            'password.required' => 'Password is required!',
-
+            'old_password.required' => 'old_password is required!',
+            'new_password.required' => 'new_password is required!',
         ];
     }
 }
-

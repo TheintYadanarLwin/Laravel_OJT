@@ -43,7 +43,7 @@
                         <a class="nav-link disabled" href="#">Disabled</a>
                     </li>
                 </ul>
-                <div class="collapse navbar-collapse mr-5" id="navbarNav">
+                <div class="collapse navbar-collapse mr-15" id="navbarNav">
                     <ul class="navbar-nav">
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">Login</a>

@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Redirect;
+use App\Models\User;
+use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\PasswordRequest;
 use Illuminate\Support\Facades\Session;
 use App\Contracts\Services\Auth\AuthServiceInterface;
 
@@ -16,6 +21,7 @@ class AuthController extends Controller
     {
         $this->authService = $authService;
     }
+   
     public function index()
     {
         return view('auth.login');
@@ -38,6 +44,7 @@ class AuthController extends Controller
 
     /**
      * Register route
+     * @return \Illuminate\Http\Response
      */
     public function registration()
     {
@@ -66,5 +73,45 @@ class AuthController extends Controller
         Session::flush();
         Auth::logout();
         return Redirect('home');
+    }
+
+    /**
+     * User Update view
+     * @return \Illuminate\Http\Response
+     */
+    public function profile()
+    {
+        return view('auth.edit');
+    }
+    /**
+     * Update User
+     * @param \App\Http\Requests\UserRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function updateUser(UserRequest $request)
+    {
+        $user = $this->authService->updateUser($request);
+
+        return redirect()->route('posts.index', compact('user'))->with('success', 'User Profile Has Been updated successfully');
+    }
+
+    /**
+     * Change Password
+     * @return \Illuminate\Http\Response
+     */
+    public function changePassword()
+    {
+        return view('auth.change-password');
+    }
+
+    /**
+     * Update Password
+     * @param mixed $request
+     * @return mixed
+     */
+    public function updatePassword(PasswordRequest $request)
+    {
+        $user = $this->authService->updatePassword($request);
+        return redirect()->route('posts.index',compact('user'))->with('success', 'Password has been changed successfully');
     }
 }

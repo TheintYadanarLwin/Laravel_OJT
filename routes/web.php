@@ -29,6 +29,14 @@ Route::get('registration', [AuthController::class, 'registration'])->name('regis
 Route::post('custom-registration', [AuthController::class, 'register'])->name('auth.register');
 Route::get('signout', [AuthController::class, 'signOut'])->name('signout')->middleware(['auth', 'verified']);
 
+//Update user profile 
+Route::middleware(['auth'])->group(function () {
+    Route::get('user/edit',[AuthController::class,'profile'])->name('auth.profile');
+    Route::put('user/{user}',[AuthController::class,'updateUser'])->name('auth.update');
+    Route::get('/change-password', [AuthController::class, 'changePassword'])->name('auth.change-password');
+    Route::post('/change-password', [AuthController::class, 'updatePassword'])->name('auth.update-password');
+  });
+
 //Route for Posts
 Route::middleware('auth')->group(function () {
     Route::get('/posts', [PostController::class, 'index'])->name('posts.index');

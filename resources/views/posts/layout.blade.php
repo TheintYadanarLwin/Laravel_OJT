@@ -23,18 +23,22 @@
                     <li class="nav-item">
                         <a class="nav-link ml-12" href="{{ route('categories.index') }}">CATEGORY</a>
                     </li>
-                    <li class="nav-item float-right">
-                        <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Profile
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li class="text-center align-center"><a class=" btn-danger btn" href="{{ route('signout') }}">Logout</a></li>
-                            </ul>
-                        </div>
-                    </li>
                 </ul>
+                <form class="form-inline mt-2 mt-md-0 mr-3 d-flex">
+                    <div class="dropdown" >
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                            data-bs-toggle="dropdown">
+                            {{ Auth::user()->name }}
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="left: -78px">
+                            <li class="text-center align-center text-dark">
+                                <a class="btn btn-primary" href="{{ route('auth.profile') }}">Update Profile</a>
+                            </li>
+                            <li class="text-center align-center mt-3"><a class=" btn-danger btn"
+                                    href="{{ route('signout') }}">Logout</a></li>
+                        </ul>
+                    </div>
+                </form>
             </div>
         </div>
     </nav>

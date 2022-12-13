@@ -20,5 +20,23 @@ class AuthService implements AuthServiceInterface
     {
         return $this->authDao->register($request);
     }
-}
+    /**
+     * Update User Profile 
+     * @param mixed $request
+     * @return mixed
+     */
+    public function updateUser($request)
+    {
+        return $this->authDao->updateUser($request);
+    }
 
+    /**
+     * Update Password
+     * @param mixed $request
+     * @return mixed
+     */
+    public function updatePassword($request)
+    {
+        return $this->authDao->updatePassword($request);
+    }
+}
