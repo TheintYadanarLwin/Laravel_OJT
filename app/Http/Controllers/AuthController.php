@@ -70,14 +70,13 @@ class AuthController extends Controller
      */
     public function signOut()
     {
-        Session::flush();
         Auth::logout();
-        return Redirect('home');
+        return redirect('home');
     }
 
     /**
      * User Update view
-     * @return \Illuminate\Http\Response
+    * @return \Illuminate\Http\Response
      */
     public function profile()
     {

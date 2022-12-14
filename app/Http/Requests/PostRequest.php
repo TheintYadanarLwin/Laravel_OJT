@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use Log;
 use Illuminate\Foundation\Http\FormRequest;
 
 class PostRequest extends FormRequest
@@ -30,7 +29,6 @@ class PostRequest extends FormRequest
             'description' => 'required|max:50',
             'status' => 'required|string|max:50',
             'category' => 'required',
-            'old_image' => ['nullable'],
             'image'  => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
