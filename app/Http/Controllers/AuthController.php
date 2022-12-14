@@ -110,7 +110,10 @@ class AuthController extends Controller
      */
     public function updatePassword(PasswordRequest $request)
     {
-        $user = $this->authService->updatePassword($request);
+        if (!Hash::check($request->old_password, auth()->user()->password)) {
+            return back()->with("error", "Old Password Doesn't match!");
+        } 
+        $user = $this->authService->updatePassword($request);  
         return redirect()->route('posts.index',compact('user'))->with('success', 'Password has been changed successfully');
     }
 }

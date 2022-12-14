@@ -59,7 +59,7 @@
             <div id="carouselCaptions" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
                     @foreach ($posts as $post)
-                        <li data-target=".carouselCaptions" data-slide-to="{{ $loop->index }}"
+                        <li data-target="#carouselCaptions" data-slide-to="{{ $loop->index }}"
                             class="{{ $loop->first ? 'active' : '' }} bg-dark"></li>
                     @endforeach
                 </ol>
@@ -67,14 +67,14 @@
                     @foreach ($posts as $post)
                         <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
                             @if ($post->image === null)
-                                <img src="/test/default.png" class="d-block w-100" alt="defaultimage" height="500"
+                                <img src="/img/default.png" class="d-block w-100" alt="defaultimage" height="500"
                                     width="350" class="img img-responsive">
                             @else
                                 <img src="/images/{{ $post->image }}" class="d-block w-100" alt="postimage"
                                     height="500" width="350" class="img img-responsive">
                             @endif
                             <div class="carousel-caption text-left">
-                                <h2 class="text-light">
+                                <h2 class="text-warning">
                                     {{ $post->title }}</h2>
                                 <p><a class="btn btn-lg btn-success" href="{{ 'registration' }}" role="button">Sign up
                                         today</a></p>
@@ -104,7 +104,7 @@
                 @foreach ($posts as $post)
                     <div class="col-lg-4">
                         @if ($post->image === null)
-                            <img src="/test/default.png" class="d-block rounded-circle shadow-4-strong"
+                            <img src="/img/default.png" class="d-block rounded-circle shadow-4-strong"
                                 alt="defaultimage" height="150" width="150" class="img img-responsive">
                         @else
                             <img src="/images/{{ $post->image }}" class="d-block rounded-circle shadow-4-strong"
@@ -135,7 +135,7 @@
                         dapibus, tellus ac cursus commodo.</p>
                 </div>
                 <div class="col-md-5">
-                    <img src="/images/download (2).jpg" class="d-block" alt="defaultimage" height="500"
+                    <img src="/img/zipper8kw.jpg" class="d-block" alt="defaultimage" height="500"
                         width="500" class="img img-responsive">
 
                 </div>
@@ -151,7 +151,7 @@
                         dapibus, tellus ac cursus commodo.</p>
                 </div>
                 <div class="col-md-5 order-md-1">
-                    <img src="/images/download.jpg" class="d-block" alt="defaultimage" height="500"
+                    <img src="/img/hyundaiwasher.jpg" class="d-block" alt="defaultimage" height="500"
                         width="500" class="img img-responsive">
                 </div>
             </div>
@@ -166,7 +166,7 @@
                         dapibus, tellus ac cursus commodo.</p>
                 </div>
                 <div class="col-md-5">
-                    <img src="/images/download1.jpg" class="d-block" alt="defaultimage" height="500"
+                    <img src="/img/toolkit.jpg" class="d-block" alt="defaultimage" height="500"
                         width="500" class="img img-responsive">
                 </div>
             </div>
