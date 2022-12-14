@@ -3,7 +3,6 @@
 namespace App\Contracts\Dao\Post;
 
 use App\Models\Post;
-use Illuminate\Http\Request;
 
 interface PostDaoInterface
 {
@@ -45,7 +44,7 @@ interface PostDaoInterface
      *
      * @param  \App\Models\Post $post
      */
-    public function destroy(Post $post);
+    public function destroy($post);
 
     /**
      * Download CSV File
@@ -61,5 +60,5 @@ interface PostDaoInterface
      * @param mixed $request
      * @return mixed
      */
-    public function importPost(Request $request);
+    public function importPost($request);
 }

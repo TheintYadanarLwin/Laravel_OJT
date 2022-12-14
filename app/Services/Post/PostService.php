@@ -2,8 +2,6 @@
 
 namespace App\Services\Post;
 
-use App\Models\Post;
-use Illuminate\Http\Request;
 use App\Contracts\Dao\Post\PostDaoInterface;
 use App\Contracts\Services\Post\PostServiceInterface;
 
@@ -38,7 +36,7 @@ class PostService implements PostServiceInterface
     /**
      * Edit Data into Post Table
      */
-    public function edit(Post $post)
+    public function edit($post)
     {
         return $this->postDao->edit($post);
     }
@@ -48,7 +46,7 @@ class PostService implements PostServiceInterface
      * @param  \App\Http\Requests\PostRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($request)
     {
         return $this->postDao->store($request);
     }
@@ -60,7 +58,7 @@ class PostService implements PostServiceInterface
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update($request,$post)
     {
         return $this->postDao->update($request, $post);
     }
@@ -71,7 +69,7 @@ class PostService implements PostServiceInterface
      * @param  \App\Models\Post $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy($post)
     {
         return $this->postDao->destroy($post);
     }
@@ -82,7 +80,7 @@ class PostService implements PostServiceInterface
      * @param \App\Models\Post $post
      * @return \Illuminate\Http\Response
      */
-    public function exportPost(Post $post)
+    public function exportPost($post)
     {
         return $this->postDao->exportPost($post);
     }
@@ -93,7 +91,7 @@ class PostService implements PostServiceInterface
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function importPost(Request $request)
+    public function importPost($request)
     {
         return $this->postDao->importPost($request);
     }

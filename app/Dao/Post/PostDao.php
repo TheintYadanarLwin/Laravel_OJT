@@ -6,7 +6,6 @@ use App\Models\Post;
 use App\Models\Category;
 use App\Exports\PostsExport;
 use App\Imports\PostsImport;
-use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Contracts\Dao\Post\PostDaoInterface;
 
@@ -52,11 +51,17 @@ class PostDao implements PostDaoInterface
      */
     public function store($request)
     {
+        $imageName = null;
+        if (!is_null($image = $request->file('image'))) {
+            $destinationPath = public_path('\images');
+            $imageName = time() . "." . $image->getClientOriginalName();
+            $image->move($destinationPath, $imageName);
+        }
         $post = Post::create([
             'title' => $request->title,
             'description' => $request->description,
-            'status' => $request->status
-
+            'status' => $request->status,
+            'image' => $imageName,
         ]);
         $post->categories()->attach($request->category);
         return $post;
@@ -72,10 +77,18 @@ class PostDao implements PostDaoInterface
     public function update($request, $post)
     {
         $post = Post::findOrFail($post->id);
+        $imageName = $post->image;
+
+        if (!is_null($image = $request->file('image'))) {
+            $destinationPath = public_path('\images');
+            $imageName = $image->getClientOriginalName();
+            $image->move($destinationPath, $imageName);
+        }
         $post->update([
             'title' => $request->title,
             'description' => $request->description,
-            'status' => $request->status
+            'status' => $request->status,
+            'image' => $imageName,
         ]);
         $post->categories()->detach();
         $post->categories()->attach($request->category);
@@ -87,7 +100,7 @@ class PostDao implements PostDaoInterface
      *
      * @param  \App\Models\Post $post
      */
-    public function destroy(Post $post)
+    public function destroy($post)
     {
         return $post->delete();
     }
@@ -98,7 +111,7 @@ class PostDao implements PostDaoInterface
      * @param mixed $request
      * @return \Maatwebsite\Excel\Excel
      */
-    public function exportPost(Post $post)
+    public function exportPost($post)
     {
         return Excel::download(new PostsExport, 'Post' . now() . '.csv');
     }
@@ -109,7 +122,7 @@ class PostDao implements PostDaoInterface
      * @param mixed $request
      * @return \Maatwebsite\Excel\Excel
      */
-    public function importPost(Request $request)
+    public function importPost($request)
     {
         return Excel::import(new PostsImport, $request->file('file'));
     }

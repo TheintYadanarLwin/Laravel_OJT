@@ -47,8 +47,8 @@ class PostController extends Controller
     {
 
         $posts = $this->postService->store($request);
-
-        return redirect()->route('posts.index', compact('posts'))->with('success', 'Post has been created successfully.');
+        return redirect()->route('posts.index', compact('posts'))
+            ->with('success', 'Product created successfully.');
     }
 
     /**
@@ -70,7 +70,9 @@ class PostController extends Controller
     {
         $posts = $this->postService->edit($post);
         $oldCategoryIds = $post->categories->pluck('id')->toArray();
-        return view('posts.edit', compact('posts', 'oldCategoryIds'));
+        $post = $posts['post'];
+        $categories = $posts['categories'];
+        return view('posts.edit', compact('post', 'categories', 'oldCategoryIds'));
     }
 
     /**
@@ -79,6 +81,7 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
+
     public function update(PostRequest $request, Post $post)
     {
         $posts = $this->postService->update($request, $post);
@@ -118,6 +121,4 @@ class PostController extends Controller
         $posts = $this->postService->importPost($request);
         return redirect()->route('posts.index')->with('success', 'Post has been uploaded successfully.');
     }
-      
 }
-

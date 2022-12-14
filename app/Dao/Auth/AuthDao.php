@@ -34,4 +34,37 @@ class AuthDao implements AuthDaoInterface
         Session::flush();
         return Auth::logout();
     }
+
+     /**
+     * Update User
+     * @param mixed $request
+     * @return void
+     */
+    public function updateUser($request)
+    {
+        $user = User::findOrFail(auth()->id());
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+        return $user;
+    }
+
+    /**
+     * Update Password
+     * @param mixed $request
+     * @return mixed
+     */
+    public function updatePassword($request)
+    {
+        #Match The Old Password
+        if (!Hash::check($request->old_password, auth()->user()->password)) {
+            return back()->with("error", "Old Password Doesn't match!");
+        }
+        #Update the new Password
+        return User::whereId(auth()->user()->id)->update([
+            'password' => Hash::make($request->new_password)
+        ]);
+    }
 }

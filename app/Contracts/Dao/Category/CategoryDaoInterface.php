@@ -2,8 +2,6 @@
 
 namespace App\Contracts\Dao\Category;
 
-use App\Models\Category;
-
 interface CategoryDaoInterface
 {
     /**
@@ -32,5 +30,5 @@ interface CategoryDaoInterface
      *
      * @param  \App\Models\Category $category
      */
-    public function destroy(Category $post);
+    public function destroy($category);
 }

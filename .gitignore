@@ -17,3 +17,5 @@ yarn-error.log
 composer.lock
 package-lock.json
 resources/views/vendor/*
+public/images/*
+public/uploads

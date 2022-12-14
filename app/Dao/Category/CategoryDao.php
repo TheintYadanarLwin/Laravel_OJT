@@ -55,7 +55,7 @@ class CategoryDao implements CategoryDaoInterface
      *
      * @param  \App\Models\Category $category
      */
-    public function destroy(Category $category)
+    public function destroy($category)
     {
         return $category->delete();
     }

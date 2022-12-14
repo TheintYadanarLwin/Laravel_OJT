@@ -4,6 +4,7 @@ namespace App\Contracts\Services\Post;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use App\Http\Requests\PostRequest;
 
 interface PostServiceInterface
 {
@@ -23,7 +24,7 @@ interface PostServiceInterface
      *
      * @param  \App\Http\Requests\PostRequest $request
      */
-    public function store(Request $request);
+    public function store(PostRequest $request);
 
     /**
      * Edit the specified resource in storage.
