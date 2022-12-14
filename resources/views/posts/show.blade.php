@@ -22,7 +22,7 @@ POST DETAIL
                     <tr>
                         <td>
                             @if ($post->image === null)
-                                <img src="/test/default.png" width='100' height='100'
+                                <img src="/img/default.png" width='100' height='100'
                                     class="img img-responsive">
                             @else
                                 <img src="/images/{{ $post->image }}" width='100' height='100'

@@ -35,7 +35,7 @@ class AuthDao implements AuthDaoInterface
         return Auth::logout();
     }
 
-     /**
+    /**
      * Update User
      * @param mixed $request
      * @return void
@@ -57,11 +57,7 @@ class AuthDao implements AuthDaoInterface
      * @return mixed
      */
     public function updatePassword($request)
-    {
-        #Match The Old Password
-        if (!Hash::check($request->old_password, auth()->user()->password)) {
-            return back()->with("error", "Old Password Doesn't match!");
-        }
+    {  
         #Update the new Password
         return User::whereId(auth()->user()->id)->update([
             'password' => Hash::make($request->new_password)

@@ -26,7 +26,7 @@
                             style="display: none;" value="{{ old('image') ? old('image') : $post->image }}" />
                         <label for="image" style="display: block; height: 150px; width: 150px;">
                             @if ($post->image === null)
-                                <img id="preview_image" src="/test/default.png" alt="default image" class="img-thumbnail" />
+                                <img id="preview_image" src="/img/default.png" alt="default image" class="img-thumbnail" />
                             @else
                                 <img id="preview_image" src="/images/{{ $post->image }}" alt="{{ $post->image }}"
                                     class="img-thumbnail" />

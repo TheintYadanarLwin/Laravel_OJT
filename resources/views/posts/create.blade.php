@@ -27,7 +27,7 @@
                         <input type="file" id="image" style="display:none;" name="image" class="form-control"
                             placeholder="Post Image">
                         <label for="image" style="display: block; height: 150px; width: 150px;">
-                            <img id="preview_image" src="/test/default.png" alt="default image" class="img-thumbnail" />
+                            <img id="preview_image" src="/img/default.png" alt="default image" class="img-thumbnail" />
                         </label>
                         @error('image')
                             <div class="text-danger mt-1 mb-1">*{{ $message }}*</div>
