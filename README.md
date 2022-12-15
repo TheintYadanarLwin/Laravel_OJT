@@ -96,9 +96,7 @@ the file at vendor/maatwebsite/excel/src/Files/TemporaryFileFactory.php line:52_
 ```
 
 #### You can also read the documentation of Maatwebsite\Excel
-```
-https://docs.laravel-excel.com/3.1/getting-started/installation.html
-```
+[laravel-excel.com](https://docs.laravel-excel.com/3.1/getting-started/installation.html)
 
 _Hope you Enjoy it!👍_
 
