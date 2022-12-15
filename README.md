@@ -38,9 +38,10 @@ php artisan serve
 ## If You're Having Some error in download pdf
 #### Laravel/Excel Package
 
-
-_If you're having error when install this package_
+_Installation for Maatwebsite\Excel_
 `composer require maatwebsite/excel`
+
+_If composer require fails on Laravel 9 because of the simple-cache dependency, you will have to specify the psr/simple-cache version as ^2.0 in your composer.json to satisfy the PhpSpreadsheet dependency. You can install both at the same time as:_
 
 #### Use this command Instead
 ```
@@ -48,7 +49,27 @@ composer require maatwebsite/excel --ignore-platform-reqs
                         or
 composer require psr/simple-cache:^2.0 maatwebsite/excel
 ```
+_The Maatwebsite\Excel\ExcelServiceProvider is auto-discovered and registered by default._
+####If you want to register it yourself, add the ServiceProvider in config/app.php:
+```
+'providers' => [
+    /*
+     * Package Service Providers...
+     */
+    Maatwebsite\Excel\ExcelServiceProvider::class,
+]
+'aliases' => [
+    ...
+    'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+]
+```
+####To publish the config, run the vendor publish command:
+```
+php artisan vendor:publish --provider="Maatwebsite\Excel\ExcelServiceProvider" --tag=config
+```
+This will create a new config file named config/excel.php.
 
+####If there is some errors at running 
 _Then in `php.ini` file remove `;` infront of `extension=gd`_
 
 #### How To Solve storage/framework" directory does not exist, the import will throw an exception: mkdir(): No such file or directory[BUG] 
@@ -71,6 +92,11 @@ the file at vendor/maatwebsite/excel/src/Files/TemporaryFileFactory.php line:52_
             $this->temporaryPath . DIRECTORY_SEPARATOR . ($fileName ?: $this->generateFilename($fileExtension))
         );
     }
+```
+
+####You can also read the documentation of Maatwebsite\Excel
+```
+https://docs.laravel-excel.com/3.1/getting-started/installation.html
 ```
 
 _Hope you Enjoy it!👍_
