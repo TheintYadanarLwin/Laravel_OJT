@@ -63,7 +63,8 @@ _The Maatwebsite\Excel\ExcelServiceProvider is auto-discovered and registered by
     'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 ]
 ```
-####To publish the config, run the vendor publish command:
+#### 
+To publish the config, run the vendor publish command:
 ```
 php artisan vendor:publish --provider="Maatwebsite\Excel\ExcelServiceProvider" --tag=config
 ```
