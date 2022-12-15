@@ -70,7 +70,7 @@ php artisan vendor:publish --provider="Maatwebsite\Excel\ExcelServiceProvider" -
 ```
 This will create a new config file named config/excel.php.
 
-####If there is some errors at running 
+#### If there is some errors at running 
 _Then in `php.ini` file remove `;` infront of `extension=gd`_
 
 #### How To Solve storage/framework" directory does not exist, the import will throw an exception: mkdir(): No such file or directory[BUG] 
