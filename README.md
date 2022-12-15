@@ -50,7 +50,7 @@ composer require maatwebsite/excel --ignore-platform-reqs
 composer require psr/simple-cache:^2.0 maatwebsite/excel
 ```
 _The Maatwebsite\Excel\ExcelServiceProvider is auto-discovered and registered by default._
-####If you want to register it yourself, add the ServiceProvider in config/app.php:
+#### If you want to register it yourself, add the ServiceProvider in config/app.php:
 ```
 'providers' => [
     /*
@@ -95,7 +95,7 @@ the file at vendor/maatwebsite/excel/src/Files/TemporaryFileFactory.php line:52_
     }
 ```
 
-####You can also read the documentation of Maatwebsite\Excel
+#### You can also read the documentation of Maatwebsite\Excel
 ```
 https://docs.laravel-excel.com/3.1/getting-started/installation.html
 ```
